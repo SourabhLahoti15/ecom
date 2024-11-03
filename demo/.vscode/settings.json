@@ -1,4 +1,8 @@
 {
     "java.configuration.updateBuildConfiguration": "automatic",
-    "livePreview.defaultPreviewPath": "/target"
+    "livePreview.defaultPreviewPath": "/target",
+    "tomcat.server": "Tomcat",
+    "tomcat.port": "8080",
+    "tomcat.browserAutoOpen": true,
+    "tomcat.contextPath": "/demo",
 }
