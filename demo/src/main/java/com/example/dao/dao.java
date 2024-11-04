@@ -1,3 +1,4 @@
+package com.example.dao;
 public interface dao {
     void addUser(User user);
     User getUserbyId(int user_id);
