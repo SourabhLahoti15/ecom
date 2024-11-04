@@ -14,15 +14,17 @@ public class daoImpl implements dao{
 
     @Override
     public void addUser(User user) {
-        String query = "INSERT INTO user(user_name,email,password,address) VALUES(?, ?, ?, ?)";
+        String query = "INSERT INTO user(user_id, user_name,email,password,address) VALUES(?, ?, ?, ?, ?)";
         try(Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);)
         {
             PreparedStatement ps = connection.prepareStatement(query);
-            ps.setString(1, user.getUser_name()); 
-            ps.setString(2, user.getEmail());
-            ps.setString(2, user.getPassword());
-            ps.setString(2, user.getAddress());
+            ps.setInt(1, user.getUser_id()); 
+            ps.setString(2, user.getUser_name()); 
+            ps.setString(3, user.getEmail());
+            ps.setString(4, user.getPassword());
+            ps.setString(5, user.getAddress());
             ps.executeUpdate();
+            System.out.println("user added.");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -31,18 +33,15 @@ public class daoImpl implements dao{
     @Override
     public User getUserbyId(int user_id) {
         String query = "SELECT * FROM user WHERE user_id= '?'";
-        try(Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        PreparedStatement ps = connection.prepareStatement(query);)
-        {
+        try(Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)){
+            PreparedStatement ps = connection.prepareStatement(query); 
             ps.setInt(1, user_id);
             ResultSet rs = ps.executeQuery();
-            if(rs.next()){
-                return new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
-            }
+            return new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            return null;
         }
-        return null;
     }
 
     // @Override
