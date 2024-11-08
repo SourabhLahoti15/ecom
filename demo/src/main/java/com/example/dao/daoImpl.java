@@ -58,5 +58,5 @@ public class daoImpl implements dao{
     public void deleteUser(int id) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-        
+    
 }

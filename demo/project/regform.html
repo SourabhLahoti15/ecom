@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="regform.css">
+</head>
+<body>
+    <h1>Registration Form</h1>
+    <form action="" name="regFrom" onsubmit="return validateForm()">
+        <p>
+            <label for="name">Name:</label>
+            <input type="text" id="name" placeholder="Enter your name">
+            <span id="name-error" class="error-msg"></span>
+        </p>
+        <p>
+            <label for="address">Address:</label>
+            <input type="text" id="address" placeholder="Enter your address">
+            <span id="address-error" class="error-msg"></span>
+        </p>
+        <p>
+            <label for="email">Email:</label>
+            <input type="text" id="email" placeholder="Enter your email">
+            <span id="email-error" class="error-msg"></span>
+        </p>
+        <p>
+            <label for="password">Password:</label>
+            <input type="password" id="password" placeholder="Enter your password">
+            <span id="password-error" class="error-msg"></span>
+        </p>
+        <p>
+            <label for="college">College:</label>
+            <input type="text" id="college" placeholder="Enter your College">
+            <span id="college-error" class="error-msg"></span>
+        </p>
+        <p>
+            <label for="subject">Select your course:</label>
+            <select name="subject" id="subject">
+                <option value="">Select course</option>
+                <option value="BTECH">BTECH</option>
+                <option value="BBA">BBA</option>
+                <option value="BCA">BCA</option>
+            </select>
+            <span id="subject-error" class="error-msg"></span>
+        </p>
+        <p>
+            <input type="checkbox" id="agree" name="agree">
+            <label for="agree">Agree to above information</label>
+            <span id="agree-error" class="error-msg"></span>
+        </p>
+        <p>
+            <input type="submit" id="submit" name="submit" value="submit">
+            <input type="reset" id="reset" name="reset" value="reset">
+        </p>
+    </form>
+    <script src="regform.js"></script>
+</body>
+</html>

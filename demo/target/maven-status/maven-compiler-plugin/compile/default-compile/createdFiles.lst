@@ -1,4 +1,7 @@
+com\example\dao\Product.class
+com\example\dao\Order.class
+com\example\util\jdbc.class
+com\example\dao\jdbc.class
 com\example\dao\daoImpl.class
 com\example\dao\User.class
 com\example\dao\dao.class
-com\example\util\jdbc.class
