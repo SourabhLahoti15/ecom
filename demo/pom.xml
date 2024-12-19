@@ -88,7 +88,7 @@
         <plugin>
           <groupId>org.apache.tomcat.maven</groupId>
           <artifactId>tomcat-maven-plugin</artifactId>
-          <version>2.2</version>
+          <version>3.0-r1756466</version>
           <configuration>
             <port>8080</port>
             <path>/demo</path>
