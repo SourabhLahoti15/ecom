@@ -1,7 +1,7 @@
 package com.example.util;
 
 import com.example.dao.User;
-import com.example.dao.daoImpl;
+import com.example.dao.UserDAOImpl;
 
 public class jdbc {
     public static void main(String[] args) {
@@ -19,7 +19,7 @@ public class jdbc {
         // }
 
         User user = new User(7, "thala", "thala@gmail.com", "raju123", "o road");
-        daoImpl d = new daoImpl();
+        UserDAOImpl d = new UserDAOImpl();
         // d.addUser(user);
         System.out.println(d.getUserbyId(7));
     }

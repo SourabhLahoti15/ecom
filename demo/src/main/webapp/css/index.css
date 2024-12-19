@@ -1,0 +1,301 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    user-select: none;
+}
+body{
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}
+.logo{
+    margin: 10px;
+    display: flex;
+    gap: 0px;
+    font-size: 30px;
+    font-weight: 600;
+}
+.logout:hover{
+    color: rgb(254, 88, 88);
+}
+.sidebar{
+    margin: 0;
+    padding: 0;
+    width: 23%;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    overflow-y: auto;
+    scrollbar-width: none;
+    background-color: black;
+    color: white;
+}
+hr{
+    border: 1px solid grey;
+}
+.sidebar-nav{
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 10px;
+    background-color: #242424;
+    font-size: 18px;
+    color: white;
+}
+.sidebar-nav div:first-child{
+    border-radius: 10px 10px 0px 0px;
+}
+.sidebar-nav div:last-child{
+    border-radius: 0px 0px 10px 10px;
+}
+.sidebar-nav div{
+    padding: 12px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    color: white;
+}
+.sidebar-nav div:hover{
+    background-color: #353535;
+    cursor: pointer;
+}
+.sidebar div i{
+    font-size: larger;
+}
+.sidebar-address{
+    margin: 10px;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 10px;
+    font-size: large;
+    background-color: #242424;
+}
+.address-heading{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.your-address{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+}
+#address-plus{
+    float: right;
+    cursor: pointer;
+    padding: 5px 7px;
+    border-radius: 50%;
+    font-size: 20px;
+    background-color: grey;
+    cursor: pointer;
+}
+.main{
+    margin: 0px;
+    padding: 0px;
+    min-height: fit-content;
+    overflow: hidden;
+}
+.playlist-card{
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #393939;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.playlist-card p{
+    font-size: 14px;
+}
+.playlist-card button{
+    padding: 5px;
+    width: 70%;
+    font-size: 16px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: transform 1 ease;
+}
+.playlist-card button:hover{
+    transform: scale(1.05);
+}
+.sidebar-links{
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+}
+.sidebar-links li{
+    list-style: none;
+}
+.sidebar-links li a{
+    text-decoration: none;
+    color: grey;
+}
+.sidebar-links li a:hover{
+    color: rgb(216, 216, 216);
+}
+.language{
+    margin: 10px;
+    padding: 5px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    transition: transform 1 ease;
+}
+.language:hover{
+    transform: scale(1.05);
+    border-color: white;
+    cursor: pointer;
+}
+nav{
+    margin: 10px 10px 0px 23%;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #242424;
+}
+.back-forward{
+    display: flex;
+    gap: 20px;
+    color: white;
+}
+.back-forward i{
+    padding: 5px 10px;
+    border-radius: 50%;
+    font-size: 25px;
+    background-color: grey;
+    cursor: pointer;
+}
+.search-bar{
+    border: 1px solid grey;
+    border-radius: 5px;
+    color: white;
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+}
+.search-bar input{
+    margin: 10px;
+    width: 90%;
+    color: whitesmoke;
+    font-size: 15px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+.search-bar i{
+    display: flex;
+    font-size: 20px;
+    align-items: center;
+    padding: 10px;
+    color: white;
+    border-radius: 0px 5px 5px 0px;
+    background-color: grey;
+}
+.login button{
+    padding: 8px;
+    background-color: rgba(128, 128, 128, 0.8);
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    /* text-transform: uppercase;  */
+    backdrop-filter: blur(8px); 
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+}
+.login button:hover{
+    background-color: rgba(128, 128, 128, 1); 
+    transform: scale(1.05);
+}
+.login button:active{
+    background-color: rgba(128, 128, 128, 0.9);
+    transform: scale(0.98);
+}
+main{
+    margin: 10px 10px 10px 23%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 30px;
+    color: white;
+    background-color: #242424;
+}
+main h2:hover{
+    cursor: pointer;    
+    text-decoration: underline;
+}
+.heading{
+    display: flex;
+    justify-content: space-between;
+}
+.show-all{
+    font-weight: 600;
+    color: grey;
+}
+.show-all:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+.division{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.cards{
+    display: flex;
+    gap: 10px;
+}
+.card{
+    padding: 15px;
+    max-width: 170px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.card img{
+    width: 140px;
+    height: 140px;
+}
+.artist-card img{
+    height: 140px;
+    width: 140px;
+    border-radius: 50%;
+}
+.card:hover{
+    background-color: rgb(46, 46, 46);
+}
+.sub-title{
+    color: #a4a4a4;
+}
+.sub-title ul{
+    display: flex;
+    gap: 5px;
+    list-style: none;
+}
+.sub-title li a{
+    color: #a4a4a4;
+    text-decoration: none;
+}
+.sub-title li a:hover{
+    text-decoration: underline;
+}

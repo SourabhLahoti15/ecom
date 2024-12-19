@@ -1,18 +1,24 @@
 package com.example.dao;
+import java.sql.Timestamp;
 
 public class User {
     private int user_id;
     private String user_name;
+    private String gender;
     private String email;
     private String password;
     private String address;
+    private int phone;
+    private Timestamp created_at;
     
-    public User(int user_id, String user_name, String email, String password, String address){
+    public User(int user_id, String user_name, String gender, String email, String password, String address, int phone){
         this.user_id = user_id;
         this.user_name = user_name;
+        this.gender = gender;
         this.email = email;
         this.password = password;
         this.address = address;
+        this.phone = phone;
     }
 
     public int getUser_id() {
@@ -29,6 +35,14 @@ public class User {
 
     public void setUser_name(String user_name) {
         this.user_name = user_name;
+    }
+
+    public String getGender(){
+        return gender;
+    }
+
+    public void setGender(String gender){
+        this.gender = gender;
     }
 
     public String getEmail() {
@@ -55,6 +69,14 @@ public class User {
         this.address = address;
     }
 
+    public int getPhone(){
+        return phone;
+    }
+    
+    public void setPhone(int phone){
+        this.phone = phone;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -67,5 +89,4 @@ public class User {
         sb.append('}');
         return sb.toString();
     }
-    
 }

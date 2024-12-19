@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <div class="glass">
+        <div class="switch-btn">
+            <button class="signupbtn">Sign Up</button>
+            <button class="loginbtn">Login</button>
+        </div>
+        <form action="" name="login" onsubmit="return loginCheck()">
+            <p>
+                <label for="email">Email:</label>
+                <input type="text" id="email" placeholder="Enter your email">
+                <span id="email-error" class="error-msg"></span>
+            </p>
+            <p>
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Enter your password">
+                <span id="password-error" class="error-msg"></span>
+            </p>
+            <p>
+                <input type="submit" id="submit" name="submit" value="submit">
+                <input type="reset" id="reset" name="reset" value="reset">
+            </p>
+    </div>
+
+    <script src="js/signin.js"></script>
+</body>
+</html>
