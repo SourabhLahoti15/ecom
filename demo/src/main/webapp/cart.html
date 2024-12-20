@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eCom</title>
-    <link rel="icon" href="images/cart.jpg">
-    <link rel="stylesheet" href="css/index.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/cart.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
-
 <body>
     <div class="sidebar">
         <div class="sidebar-nav">
             <div class="Home">
                 <i class="fa-solid fa-house"></i>
                 <span>Home</span>
+            </div>
+            <hr>
+            <div class="my-profile">
+                <i class='bx bx-user'></i>
+                <span>My Profile</span>
+            </div>
+            <hr>
+            <div class="notification">
+                <i class="fa-regular fa-bell"></i>
+                <span>Notifications</span>
             </div>
             <hr>
             <div class="Cart">
@@ -31,14 +39,14 @@
                 <span>Wishlist</span>
             </div>
             <hr>
-            <div class="my-profile">
-                <i class='bx bx-user'></i>
-                <span>My Profile</span>
-            </div>
-            <hr>
             <div class="orders">
                 <i class='bx bx-box'></i>
                 <span>Orders</span>
+            </div>
+            <hr>
+            <div class="become-seller">
+                <i class="fa-solid fa-shop"></i>
+                <span>Become Seller</span>
             </div>
             <hr>
             <div class="logout">
@@ -49,31 +57,25 @@
         <div class="sidebar-address">
             <div class="address-heading">
                 <div class="your-address">
-                    <i class='bx bxs-map'></i>
+                    <i class="fa-regular fa-map"></i>
                     <span>Your Address</span>
                 </div>
                 <div class="address-plus">
-                    <i class="fa-solid fa-plus" id="address-plus"></i>
+                    <button class="fa-solid fa-plus"></button>
                 </div>
             </div>
-            <div class="create-playlist playlist-card">
-                <h4>Create your first playlist</h4>
-                <p>It's easy, we'll help you</p>
-                <button>Create playlist</button>
+            <hr>
+            <div class="addresses">
+                <div class="address">
+                    <h4 class="address-title">Home</h4>
+                    <p class="address-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde corrupti ut magni molestias, enim alias!</p>
+                </div>
+                <hr>
+                <div class="address">
+                    <h4 class="address-title">Office</h4>
+                    <p class="address-description">Nehru road</p>
+                </div>
             </div>
-            <div class="browse-podcast playlist-card">
-                <h4>Let's find podcast to follow</h4>
-                <p>We'll keep you updated on new episodes</p>
-                <button>Create playlist</button>
-            </div>
-        </div>
-        <div class="sidebar-links">
-            <li><a href="#">Legal</a></li>
-            <li><a href="#">Safety & Privacy Center</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Cookies</a></li>
-            <li><a href="#">About Ads</a></li>
-            <li><a href="#">Accessibility</a></li>
         </div>
         <div class="language">
             <i class="fa-solid fa-globe"></i>
@@ -95,53 +97,44 @@
         </div>
     </nav>
     <main>
-        <div class="popular-artists division">
-            <div class="heading">
-                <h2>Popular artists</h2>
-                <p class="show-all">Show all</p>
-            </div>
-            <div class="cards">
-                <div class="artist-card card">
-                    <img src="face.jpg" alt="">
-                    <div class="title">Pritam</div>
-                    <div class="sub-title">Artist</div>
-                </div>
-            </div>
-        </div>
-        <div class="popular-albums division">
-            <div class="heading">
-                <h2>Popular albums</h2>
-                <p class="show-all">Show all</p>
-            </div>
-            <div class="cards">
+        <div class="cards">
+            <div class="card-buynow">
                 <div class="card">
+                    <div class="addtowishlist">
+                        <i class="fa-regular fa-heart"></i>
+                    </div>
                     <img src="images/husn.jpeg" alt="">
-                    <div class="title">Animal</div>
-                    <div class="sub-title">
-                        <ul>
-                            <li><a href="#">Mithoon</a></li>
-                            <li><a href="#">Badshah</a></li>
-                        </ul>
+                    <div class="delete">
+                        <i class="fa-regular fa-trash-can"></i>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, quasi.</div>
+                        <div class="product-price">
+                            <p>Rs. 1000</p>
+                        </div>
                     </div>
                 </div>
+                <button class="buynow-btn">Buy Now</button>
             </div>
-        </div>
-        <div class="popular-radio division">
-            <div class="heading">
-                <h2>Popular radio</h2>
-                <p class="show-all">Show all</p>
-            </div>
-            <div class="cards">
+            <div class="card-buynow">
                 <div class="card">
+                    <div class="addtowishlist">
+                        <i class="fa-regular fa-heart"></i>
+                    </div>
                     <img src="images/husn.jpeg" alt="">
-                    <div class="title">KK Radio</div>
-                    <div class="sub-title">
-                        With Neha kakkar, Pritam, KK and more
+                    <div class="delete">
+                        <i class="fa-regular fa-trash-can"></i>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, quasi.</div>
+                        <div class="product-price">
+                            <p>Rs. 1000</p>
+                        </div>
                     </div>
                 </div>
+                <button class="buynow-btn">Buy Now</button>
             </div>
         </div>
     </main>
 </body>
-
 </html>

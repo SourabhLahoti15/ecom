@@ -70,15 +70,15 @@ hr{
 }
 .sidebar-address{
     margin: 10px;
-    padding: 20px 15px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    /* gap: 20px; */
     border-radius: 10px;
     font-size: large;
     background-color: #242424;
 }
 .address-heading{
+    margin: 10px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -87,46 +87,51 @@ hr{
 .your-address{
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: center;
     gap: 10px;
 }
-#address-plus{
-    float: right;
-    cursor: pointer;
+.address-plus button{
     padding: 5px 7px;
+    float: right;
     border-radius: 50%;
     font-size: 20px;
-    background-color: grey;
+    background-color: rgb(128, 128, 128, 0.8);
+    color: white;
+    /* outline: none;  */
+    border: none;
+    backdrop-filter: blur(8px); 
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+}
+.address-plus button:hover{
+    background-color: rgba(128, 128, 128, 0.8);
+    transform: scale(1.05);
     cursor: pointer;
+}
+.address-plus button:active {
+    background-color: rgba(128, 128, 128, 0.9);
+    transform: scale(0.98);
+}
+.address{
+    padding: 15px 20px;
+}
+.addresses div:last-child{
+    border-radius: 0px 0px 10px 10px;
+
+}
+.address:hover{
+    cursor: pointer;
+    background-color: #353535;
+}
+.address-description{
+    color: grey;
+    font-size: 17px;
 }
 .main{
     margin: 0px;
     padding: 0px;
     min-height: fit-content;
     overflow: hidden;
-}
-.playlist-card{
-    padding: 15px;
-    border-radius: 10px;
-    background-color: #393939;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-.playlist-card p{
-    font-size: 14px;
-}
-.playlist-card button{
-    padding: 5px;
-    width: 70%;
-    font-size: 16px;
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: transform 1 ease;
-}
-.playlist-card button:hover{
-    transform: scale(1.05);
 }
 .sidebar-links{
     margin: 10px;
@@ -165,6 +170,7 @@ hr{
 nav{
     margin: 10px 10px 0px 23%;
     padding: 15px 20px;
+    height: 70px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -187,7 +193,9 @@ nav{
     border-radius: 5px;
     color: white;
     width: 30%;
+    height: 40px;
     display: flex;
+    align-items: center;
     justify-content: space-between;
 }
 .search-bar input{
@@ -207,10 +215,18 @@ nav{
     color: white;
     border-radius: 0px 5px 5px 0px;
     background-color: grey;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+}
+.search-bar i:hover{
+    transform: scale(1.05);
+}
+.search-bar i:active{
+    transform: scale(0.98);
 }
 .login button{
     padding: 8px;
-    background-color: rgba(128, 128, 128, 0.8);
+    background-color: rgba(66, 66, 66, 0.8);
     color: white;
     border-radius: 5px;
     font-size: 16px;
@@ -220,11 +236,11 @@ nav{
     transition: background-color 0.3s ease, transform 0.3s ease; 
 }
 .login button:hover{
-    background-color: rgba(128, 128, 128, 1); 
+    background-color: rgba(66, 66, 66, 1); 
     transform: scale(1.05);
 }
 .login button:active{
-    background-color: rgba(128, 128, 128, 0.9);
+    background-color: rgba(66, 66, 66, 0.9);
     transform: scale(0.98);
 }
 main{
@@ -236,66 +252,4 @@ main{
     gap: 30px;
     color: white;
     background-color: #242424;
-}
-main h2:hover{
-    cursor: pointer;    
-    text-decoration: underline;
-}
-.heading{
-    display: flex;
-    justify-content: space-between;
-}
-.show-all{
-    font-weight: 600;
-    color: grey;
-}
-.show-all:hover{
-    cursor: pointer;
-    text-decoration: underline;
-}
-.division{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-.cards{
-    display: flex;
-    gap: 10px;
-}
-.card{
-    padding: 15px;
-    max-width: 170px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    border-radius: 10px;
-    cursor: pointer;
-}
-.card img{
-    width: 140px;
-    height: 140px;
-}
-.artist-card img{
-    height: 140px;
-    width: 140px;
-    border-radius: 50%;
-}
-.card:hover{
-    background-color: rgb(46, 46, 46);
-}
-.sub-title{
-    color: #a4a4a4;
-}
-.sub-title ul{
-    display: flex;
-    gap: 5px;
-    list-style: none;
-}
-.sub-title li a{
-    color: #a4a4a4;
-    text-decoration: none;
-}
-.sub-title li a:hover{
-    text-decoration: underline;
 }

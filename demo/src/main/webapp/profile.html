@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-nav">
+            <div class="Home">
+                <i class="fa-solid fa-house"></i>
+                <span>Home</span>
+            </div>
+            <hr>
+            <div class="my-profile">
+                <i class='bx bx-user'></i>
+                <span>My Profile</span>
+            </div>
+            <hr>
+            <div class="notification">
+                <i class="fa-regular fa-bell"></i>
+                <span>Notifications</span>
+            </div>
+            <hr>
+            <div class="Cart">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>Cart</span>
+            </div>
+            <hr>
+            <div class="wishlist">
+                <i class="fa-regular fa-heart"></i>
+                <span>Wishlist</span>
+            </div>
+            <hr>
+            <div class="orders">
+                <i class='bx bx-box'></i>
+                <span>Orders</span>
+            </div>
+            <hr>
+            <div class="become-seller">
+                <i class="fa-solid fa-shop"></i>
+                <span>Become Seller</span>
+            </div>
+            <hr>
+            <div class="logout">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </div>
+        </div>
+        <div class="sidebar-address">
+            <div class="address-heading">
+                <div class="your-address">
+                    <i class="fa-regular fa-map"></i>
+                    <span>Your Address</span>
+                </div>
+                <div class="address-plus">
+                    <button class="fa-solid fa-plus"></button>
+                </div>
+            </div>
+            <hr>
+            <div class="addresses">
+                <div class="address">
+                    <h4 class="address-title">Home</h4>
+                    <p class="address-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde corrupti ut magni molestias, enim alias!</p>
+                </div>
+                <hr>
+                <div class="address">
+                    <h4 class="address-title">Office</h4>
+                    <p class="address-description">Nehru road</p>
+                </div>
+            </div>
+        </div>
+        <div class="language">
+            <i class="fa-solid fa-globe"></i>
+            <p>English</p>
+        </div>
+    </div>
+    <nav>
+        <div class="back-forward">
+            <i class="fa-solid fa-angle-left"></i>
+            <i class="fa-solid fa-angle-right"></i>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search for products, brands and more">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <div class="login">
+            <button class="sign-up">Sign up</button>
+            <button class="log-in">Log in</button>
+        </div>
+    </nav>
+    <main>
+        <form action="" name="signin" onsubmit="return validateForm()" onreset="reset()">
+            <div>
+                <div class="question">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" placeholder="Enter your name">
+                </div>
+                <span id="name-error" class="error-msg"></span>
+            </div>
+
+            <div class="question gender-question">
+                <div class="gender-question-answer">
+                    <label for="gender">Gender:</label>
+                    <div class="gender-answer">
+                        <div>
+                            <input type="radio" id="male" name="gender" value="Male">
+                            <label for="male">Male</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="female" name="gender" value="Female">
+                            <label for="female">Female</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="other" name="gender" value="Other">
+                            <label for="other">Other</label>
+                        </div>
+                        <span id="gender-error" class="error-msg"></span>
+                    </div>
+                </div>
+                <br>
+            </div>    
+
+            <div>
+                <div class="question">
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" placeholder="Enter your email">
+                </div>
+                <span id="email-error" class="error-msg"></span>
+            </div>
+            <div>
+                <div class="question">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" placeholder="Enter your password">
+                </div>
+                <span id="password-error" class="error-msg"></span>
+            </div>
+            <div>
+                <div class="question">
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" placeholder="Enter your address">
+                </div>
+                <span id="address-error" class="error-msg"></span>
+            </div>
+            <div>
+                <div class="question">
+                    <label for="phone">Phone:</label>
+                    <input type="text" id="number" placeholder="Enter your phone number">
+                </div>
+                <span id="phone-error" class="error-msg"></span>
+            </div>
+            <div>
+                <input type="submit" id="submit" name="submit" value="Save">
+                <input type="reset" id="reset" name="reset" value="Reset">
+            </div>
+            <button class="delete-account-btn">Delete Account</button>
+        </form>
+    </main>
+    <script src="js/signin.js"></script>
+</body>
+</html>

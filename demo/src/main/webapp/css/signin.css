@@ -82,10 +82,8 @@ select{
 input[type="checkbox"]{
     margin: 5px 2px;
 }
-input[type="text"]::placeholder,
-input[type="password"]::placeholder,
-input[type="number"]::placeholder {
-    color: #979797;
+input[type="text"]{
+    font-size: 50px;
 }
 input[type="submit"],
 input[type="reset"] {
