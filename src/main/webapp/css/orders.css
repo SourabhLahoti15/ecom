@@ -1,0 +1,140 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}
+
+main {
+    margin: 10px 10px 10px 23%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 30px;
+    color: white;
+    background-color: #242424;
+    overflow: auto;
+    height: calc(100vh - 100px);
+}
+
+.products {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.product-img img {
+    height: 150px;
+    width: 150px;
+}
+
+.product-img {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.product {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    height: 170px;
+    border-radius: 10px;
+    backdrop-filter: blur(8px);
+    position: relative;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.product:hover {
+    cursor: pointer;
+    background-color: rgb(50, 50, 50);
+    transform: scale(1.01);
+}
+
+.product-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.product-content {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.product-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 18px;
+    color: rgb(200, 200, 200);
+}
+
+.product-price {
+    font-size: 18px;
+    color: rgb(230, 230, 230);
+}
+
+.ordered-at {
+    color: grey;
+}
+
+.product:active:not(:has(.btns button:active)) {
+    background-color: rgba(50, 50, 50, 0.9);
+    transform: scale(0.98);
+}
+
+.product:hover .btns button {
+    opacity: 1;
+}
+
+.btns {
+    padding: 5px;
+    width: 15%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    position: relative;
+    z-index: 2;
+}
+
+.cancel {
+    padding: 10px;
+    background: #FF4742;
+    border: 1px solid #FF4742;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: white;
+    font-size: 1rem;
+    font-weight: 800;
+    text-align: center;
+    outline: 0;
+    opacity: 0;
+    position: relative;
+    z-index: 3;
+    transition: 0.3s opacity ease, transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+}
+
+.cancel:hover {
+    background-color: white;
+    color: #FF4742;
+    transform: scale(1.01);
+}
+
+.cancel:active {
+    transform: scale(0.9);
+}

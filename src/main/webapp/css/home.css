@@ -1,0 +1,54 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    user-select: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    overflow: hidden;
+}
+
+main {
+    margin: 10px 10px 10px 23%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 30px;
+    color: white;
+    background-color: #242424;
+    overflow: auto;
+    height: calc(100vh - 100px);
+}
+
+main h2:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.heading {
+    display: flex;
+    justify-content: space-between;
+}
+
+.show-all {
+    font-weight: 600;
+    color: grey;
+}
+
+.show-all:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.division {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
