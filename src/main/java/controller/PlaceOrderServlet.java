@@ -26,13 +26,22 @@ public class PlaceOrderServlet extends HttpServlet{
             return;
         }
         int uid = (int) session.getAttribute("user_id");
-        int product_id = Integer.parseInt(request.getParameter("productId"));
-
+        String productIdParam = request.getParameter("productId");
+        if (productIdParam == null || productIdParam.isEmpty()) {
+            response.getWriter().write("{\"success\": false, \"message\": \"Product ID is missing.\", \"type\": \"error\"}");
+            return;
+        }
+        int product_id = Integer.parseInt(productIdParam);
         ProductDAOImpl productDAO = new ProductDAOImpl();
         Product product = productDAO.getProductById(product_id);
-
         double order_amount = product.getProductPrice();
-        int address_id = Integer.parseInt(request.getParameter("addressId"));
+        
+        String addressIdParam = request.getParameter("addressId");
+        if (addressIdParam == null || addressIdParam.isEmpty()) {
+            response.getWriter().write("{\"success\": false, \"message\": \"Address ID is missing.\", \"type\": \"error\"}");
+            return;
+        }
+        int address_id = Integer.parseInt(addressIdParam);        
         
         Order order = new Order(uid, product_id, address_id, order_amount, "ordered", 1);
         OrderDAOImpl orderDAO = new OrderDAOImpl();
@@ -49,9 +58,5 @@ public class PlaceOrderServlet extends HttpServlet{
         } catch (Exception e) {
             response.getWriter().write("{\"success\": false, \"message\": \"An exception occurred: " + e.getMessage() + "\", type\": \"error\"}");
         }
-    }
-    @Override
-    protected  void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request, response);
     }
 }

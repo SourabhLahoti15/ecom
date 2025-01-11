@@ -130,7 +130,7 @@ public class ProductDAOImpl implements ProductDAO {
                 int uid = rs.getInt("user_id");
                 String imagePath = rs.getString("image_path"); 
 
-                product = new Product(imagePath, name, description, price, stock, uid);
+                product = new Product(id, imagePath, name, description, price, stock, uid);
             }
         } catch (SQLException e) {
             e.printStackTrace();

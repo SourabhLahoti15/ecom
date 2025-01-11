@@ -90,31 +90,23 @@ function deleteProduct(productId) {
 }
 function placeOrder(productId) {
     const form = document.querySelector('.buynow-form');
-
-    const selectedAddress = document.querySelector('input[name="addressId"]:checked');
-    const selectedPayment = document.querySelector('input[name="paymentMode"]:checked');
-
-    if (!selectedAddress) {
-        showNotification(false, 'Please select a delivery address', 'error');
-        return;
-    }
-    if (!selectedPayment) {
-        showNotification(false, 'Please select a payment method', 'error');
-        return;
-    }
-
+    const addressId = form.querySelector('input[name="addressId"]:checked').value;
+    const paymentMode = form.querySelector('input[name="paymentMode"]:checked').value;
+    
+    const contextPath = window.location.pathname.split('/')[1];
+    const url = "/" + contextPath + "/placeOrder";
+    
     const formData = new URLSearchParams();
     formData.append('productId', productId);
-    formData.append('addressId', selectedAddress.value);
-    formData.append('paymentMode', selectedPayment.value);
-
-    const url = "/gu/placeOrder?productId=" + productId;
+    formData.append('addressId', addressId);
+    formData.append('paymentMode', paymentMode);
     fetch(url, {
         method: 'POST',
+        credentials: 'same-origin',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: formData.toString()
+        body: formData
     })
         .then(response => {
             if (!response.ok) {
@@ -122,9 +114,8 @@ function placeOrder(productId) {
             }
             return response.json();
         })
-        .then(response => response.json())
+        // .then(response => response.json())
         .then(data => {
-            showNotification(data.success, data.message, data.type);
             if (data.success) {
                 localStorage.setItem('notification', JSON.stringify({
                     success: data.success,
@@ -132,6 +123,8 @@ function placeOrder(productId) {
                     type: data.type
                 }));
                 window.location.href = '/gu/orders';
+            } else {
+                showNotification(false, data.message, 'error');
             }
             if (data.order_count !== undefined) {
                 document.querySelector('.order-count').textContent = "Orders (" + data.order_count + ")";
@@ -165,20 +158,20 @@ function removeFromOrders(orderId) {
 function buynow(productId) {
     const url = "/gu/buynow?productId=" + productId;
     fetch(url)
-    .then(response => {
-        const contentType = response.headers.get("content-type");
-        if (contentType && contentType.includes("application/json")) {
-            return response.json().then(data => {
-                showNotification(data.success, data.message, data.type);
-            });
-        } else {
-            window.location.href = url;
-        }
-    })
-    .catch(error => {
-        console.error(error);
-        showNotification(false, 'Error occurred while processing request.', 'error');
-    });
+        .then(response => {
+            const contentType = response.headers.get("content-type");
+            if (contentType && contentType.includes("application/json")) {
+                return response.json().then(data => {
+                    showNotification(data.success, data.message, data.type);
+                });
+            } else {
+                window.location.href = url;
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            showNotification(false, 'Error occurred while processing request.', 'error');
+        });
 }
 document.addEventListener('DOMContentLoaded', function () {
     const notificationData = localStorage.getItem('notification');

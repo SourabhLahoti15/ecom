@@ -84,6 +84,7 @@
                         </div>
                     </main>
                     <script src="js/notification.js"></script>
+                    
                     <script>
                         document.forms["seller"].addEventListener('submit', function (event) {
                             var price = document.getElementsByName('product_price')[0];
