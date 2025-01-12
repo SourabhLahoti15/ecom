@@ -21,7 +21,7 @@
             <div class="product-img">
                 <img src="${product.imagePath}" alt="Product Image">
                 <div class="btns">
-                    <button class="buynow" onclick='placeOrder("${product.productId}")'>BUY NOW</button>
+                    <button class="buynow" onclick="buynow('${product.productId}')">BUY NOW</button>
                     <button class="addtocart" onclick='addToCart("${product.productId}")'>ADD TO CART</button>
                 </div>
             </div>

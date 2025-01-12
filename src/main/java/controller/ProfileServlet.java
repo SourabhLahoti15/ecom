@@ -19,7 +19,7 @@ public class ProfileServlet extends HttpServlet {
         
         HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("user_id") == null) {
-            response.sendRedirect("login.jsp");
+            response.getWriter().write("{\"success\": false, \"message\": \"You are not logged in. Please login to view profile.\", \"type\": \"error\"}");
             return;
         }
 

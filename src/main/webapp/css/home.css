@@ -26,11 +26,6 @@ main {
     height: calc(100vh - 100px);
 }
 
-main h2:hover {
-    cursor: pointer;
-    text-decoration: underline;
-}
-
 .heading {
     display: flex;
     justify-content: space-between;

@@ -50,6 +50,7 @@
                                 <input type="reset" id="reset" name="reset" value="Reset">
                             </div>
                         </form>
+                        <% if (session != null && session.getAttribute("user_id") != null) { %>
                         <div class="your-products">
                             <h2>Your Products</h2>
                             <div class="cards">
@@ -77,11 +78,12 @@
                                             <div class="product-description">${product.productDescription}</div>
                                             <div class="product-price">Rs. ${product.productPrice}</div>
                                         </div>
-                                        <button class="buynow-btn" onclick="event.stopPropagation();">Buy Now</button>
+                                        <button class="buynow-btn" onclick="buynow('${product.productId}'); event.stopPropagation();">Buy Now</button>
                                     </div>
                                 </c:forEach>
                             </div>
                         </div>
+                        <% } %>
                     </main>
                     <script src="js/notification.js"></script>
                     

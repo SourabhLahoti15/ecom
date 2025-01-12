@@ -50,10 +50,6 @@ main{
 .your-products h2{
     width: fit-content;
 }
-.your-products h2:hover{
-    text-decoration: underline;
-    cursor: pointer;
-}
 .seller-form span{
     display: block;
     float: right;

@@ -56,7 +56,9 @@ public class PageServlet extends HttpServlet {
             case "/cart":
                 session = request.getSession(false);
                 if (session == null || session.getAttribute("user_id") == null) {
+                    request.getRequestDispatcher("nologincart.jsp").forward(request, response);
                     // response.sendRedirect("login");
+                    // response.getWriter().write("{\"success\": false, \"message\": \"You are not logged in. Please login to view cart products.\", \"type\": \"error\"}");
                     return;
                 }
                 uid = (int) session.getAttribute("user_id");
@@ -75,7 +77,9 @@ public class PageServlet extends HttpServlet {
             case "/wishlist":
                 session = request.getSession(false);
                 if (session == null || session.getAttribute("user_id") == null) {
+                    request.getRequestDispatcher("nologinwishlist.jsp").forward(request, response);
                     // response.sendRedirect("login");
+                    // response.getWriter().write("{\"success\": false, \"message\": \"You are not logged in. Please login to wishlist products.\", \"type\": \"error\"}");
                     return;
                 }
                 uid = (int) session.getAttribute("user_id");
@@ -94,6 +98,7 @@ public class PageServlet extends HttpServlet {
             case "/orders":
                 session = request.getSession(false);
                 if (session == null || session.getAttribute("user_id") == null) {
+                    request.getRequestDispatcher("orders.jsp").forward(request, response);
                     // response.sendRedirect("login");
                     return;
                 }

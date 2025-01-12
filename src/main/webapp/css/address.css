@@ -64,7 +64,7 @@ textarea {
     min-height: 80px;
 }
 
-button[type="submit"] {
+#address-submit {
     width: 100%;
     padding: 10px 15px;
     font-size: 16px;
@@ -77,11 +77,11 @@ button[type="submit"] {
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-button[type="submit"]:hover {
+#address-submit:hover {
     transform: scale(1.03);
     background-color: #0056b3;
 }
-button[type="submit"]:active {
+#address-submit:active {
     transform: scale(0.97);
     background-color: #007bff;
 }

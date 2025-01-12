@@ -55,7 +55,7 @@
                             <i class="fa-solid fa-shop"></i>
                             <span>Become Seller</span>
                         </div>
-                        <% if (session !=null && session.getAttribute("user_id") !=null) { %>
+                        <% if (session != null && session.getAttribute("user_id") != null) { %>
                             <hr>
                             <div class="logout" onclick="window.location.href='/gu/logout'">
                                 <i class="fa-solid fa-right-from-bracket"></i>

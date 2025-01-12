@@ -36,7 +36,7 @@
                                         </div>
                                     </div>
                                     <div class="btns">
-                                        <button class="buynow" onclick='event.stopPropagation(); placeOrder("${cartItem.productId}")'>Buy Now</button>
+                                        <button class="buynow" onclick='event.stopPropagation(); buynow("${cartItem.productId}")'>Buy Now</button>
                                         <button class="addtowishlist" onclick='event.stopPropagation(); addToWishlist("${cartItem.productId}")'><i class="fa-regular fa-heart"></i> Wishlist</button>                                    
                                         <button class="remove" onclick='event.stopPropagation(); removeFromCart("${cartItem.productId}")'><i class="fa-regular fa-trash-can"></i> Remove</button>                                    
                                     </div>

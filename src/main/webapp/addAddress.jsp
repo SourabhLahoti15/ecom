@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Address</title>
     <link rel="stylesheet" href="css/address.css">
+    <link rel="stylesheet" href="css/nav.css">
 </head>
 
 <body>
@@ -68,7 +69,7 @@
             <textarea id="additionalInstructions" name="additionalInstructions"></textarea>
 
             <!-- Submit Button -->
-            <button type="submit" id="submit" name="submit">Add Address</button>
+            <button type="submit" id="address-submit" name="submit">Add Address</button>
         </form>
     </main>
     <script src="js/notification.js"></script>

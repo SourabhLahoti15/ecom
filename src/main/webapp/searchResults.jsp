@@ -40,7 +40,7 @@
                         <div class="product-description">${product.productDescription}</div>
                         <div class="product-price">Rs. ${product.productPrice}</div>
                     </div>
-                    <button class="buynow-btn" onclick="event.stopPropagation();">Buy Now</button>
+                    <button class="buynow-btn" onclick="buynow('${product.productId}'); event.stopPropagation();">Buy Now</button>
                 </div>
             </c:forEach>
         </div>

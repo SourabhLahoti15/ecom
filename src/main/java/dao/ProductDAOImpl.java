@@ -179,7 +179,7 @@ public class ProductDAOImpl implements ProductDAO {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                int id = rs.getInt("product_id");
+                int pid = rs.getInt("product_id");
                 String productName = rs.getString("product_name");
                 String description = rs.getString("product_description");
                 Double price = rs.getDouble("product_price");
@@ -187,8 +187,7 @@ public class ProductDAOImpl implements ProductDAO {
                 int uid = rs.getInt("user_id");
                 String imagePath = rs.getString("image_path"); 
 
-                Product product = new Product(imagePath, productName, description, price, stock, uid);
-                product.setImagePath(imagePath);
+                Product product = new Product(pid, imagePath, productName, description, price, stock, uid);
                 products.add(product);
             }
         } catch (SQLException e) {
