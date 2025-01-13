@@ -96,8 +96,7 @@
                                     <input type="reset" id="reset" name="reset" value="Reset">
                                 </div>
                                 <div>
-                                    <button type="button" class="delete-account-btn" onclick="confirmDelete()">Delete
-                                        Account</button>
+                                    <button type="button" class="delete-account-btn" onclick="confirmDelete()">Delete Account</button>
                                 </div>
                             </div>
                         </form>
@@ -150,7 +149,6 @@
                                 window.location.href = '/gu/deleteUser';
                             }
                         }
-
                     </script>
                 </body>
 

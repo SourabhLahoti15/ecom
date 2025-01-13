@@ -56,8 +56,8 @@ public class BuynowServlet extends HttpServlet {
             request.setAttribute("addresses", addresses);
 
             response.setContentType("text/html");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("buynow.jsp");
-            dispatcher.forward(request, response);
+            RequestDispatcher rd = request.getRequestDispatcher("buynow.jsp");
+            rd.forward(request, response);
 
         } catch (Exception e) {
             response.setContentType("application/json");

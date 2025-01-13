@@ -41,7 +41,7 @@ public class PlaceOrderServlet extends HttpServlet{
             response.getWriter().write("{\"success\": false, \"message\": \"Address ID is missing.\", \"type\": \"error\"}");
             return;
         }
-        int address_id = Integer.parseInt(addressIdParam);        
+        int address_id = Integer.parseInt(addressIdParam);
         
         Order order = new Order(uid, product_id, address_id, order_amount, "ordered", 1);
         OrderDAOImpl orderDAO = new OrderDAOImpl();

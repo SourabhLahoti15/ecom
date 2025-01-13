@@ -137,7 +137,7 @@ public class AddressDAOImpl implements AddressDAO {
     }
 
     @Override
-    public boolean deleteAddress(int addressId) {
+    public boolean deleteAddress(int addressId) throws SQLException {
         String query = "DELETE FROM Address WHERE address_id = ?";
         
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -146,8 +146,7 @@ public class AddressDAOImpl implements AddressDAO {
             int rowsAffected = ps.executeUpdate();
             return rowsAffected > 0;
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw e;
         }
-        return false;
     }
 }

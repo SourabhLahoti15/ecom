@@ -92,10 +92,10 @@ function placeOrder(productId) {
     const form = document.querySelector('.buynow-form');
     const addressId = form.querySelector('input[name="addressId"]:checked').value;
     const paymentMode = form.querySelector('input[name="paymentMode"]:checked').value;
-    
+
     const contextPath = window.location.pathname.split('/')[1];
     const url = "/" + contextPath + "/placeOrder";
-    
+
     const formData = new URLSearchParams();
     formData.append('productId', productId);
     formData.append('addressId', addressId);
@@ -172,6 +172,28 @@ function buynow(productId) {
             console.error(error);
             showNotification(false, 'Error occurred while processing request.', 'error');
         });
+}
+function deleteAddress(addressId) {
+    const url = "/gu/deleteAddress?addressId=" + addressId;
+    console.log(url);
+    fetch(url, {
+        method: "POST"
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                fetch('/gu/sidebar')
+                    .then(response => response.text())
+                    .then(html => {
+                        document.querySelector('.sidebar-address').innerHTML = html;
+                    });
+            }
+            showNotification(data.success, data.message, data.type);
+        })
+        .catch(error => {
+            console.error(error);
+            showNotification(false, 'Error occurred while deleting address.', 'error');
+        })
 }
 document.addEventListener('DOMContentLoaded', function () {
     const notificationData = localStorage.getItem('notification');

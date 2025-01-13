@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import model.Address;
@@ -16,5 +17,5 @@ public interface AddressDAO {
     boolean updateAddress(Address address);
 
     // Delete
-    boolean deleteAddress(int addressId);
+    boolean deleteAddress(int addressId) throws SQLException;
 }

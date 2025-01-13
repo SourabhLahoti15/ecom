@@ -1,3 +1,4 @@
+import java.sql.SQLException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -92,7 +93,7 @@ public class AddressDAOImplTest {
     }
 
     @Test
-    void testDeleteAddress() {
+    void testDeleteAddress() throws SQLException {
         Address address = new Address(
                 0, 1, "India", "Raj", "123456", "9876543210",
                 "Flat 101", "Area 51", "Landmark X",

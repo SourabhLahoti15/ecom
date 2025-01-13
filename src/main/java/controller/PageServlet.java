@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.locks.ReadWriteLock;
 
+import javax.security.auth.message.callback.PrivateKeyCallback;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -49,6 +51,7 @@ public class PageServlet extends HttpServlet {
                 break;
             case "/profile":
                 request.getRequestDispatcher("profile.jsp").forward(request, response);
+                // request.getRequestDispatcher("profile.jsp").forward(request, response);
                 break;
             case "/notification":
                 request.getRequestDispatcher("notification.jsp").forward(request, response);
@@ -98,7 +101,7 @@ public class PageServlet extends HttpServlet {
             case "/orders":
                 session = request.getSession(false);
                 if (session == null || session.getAttribute("user_id") == null) {
-                    request.getRequestDispatcher("orders.jsp").forward(request, response);
+                    request.getRequestDispatcher("nologinorders.jsp").forward(request, response);
                     // response.sendRedirect("login");
                     return;
                 }

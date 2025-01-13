@@ -80,10 +80,16 @@
                                     <hr>
                                     <div class="address" data-address-id="${address.addressId}"
                                         onclick="addressClicked(this)">
-                                        <h4 class="address-title">${address.addressType}</h4>
+                                        <div class="add-title-btn">
+                                            <h4 class="address-title">${address.addressType}</h4>
+                                            <button class="delete-address-btn" onclick='event.stopPropagation(); deleteAddress("${address.addressId}")'>
+                                                <i class="fa-regular fa-trash-can"></i>
+                                            </button>
+                                        </div>
                                         <p class="address-description">${address.flatDetails}, ${address.areaDetails},
                                             ${address.townCity},
-                                            ${address.state}, ${address.pincode}</p>
+                                            ${address.state}, ${address.pincode}
+                                        </p>
                                     </div>
                                 </div>
                             </c:forEach>
@@ -94,12 +100,14 @@
                                 <p>English</p>
                             </div>
                 </div>
+                <script src="js/notification.js"></script>
                 <script>
                     function addressClicked(addressElement) {
                         const addressId = addressElement.getAttribute('data-address-id');
                         window.location.href = "/gu/getAddress?addressId=" + addressId;
                     }
                 </script>
+                <script src="js/productAction.js"></script>
             </body>
 
             </html>

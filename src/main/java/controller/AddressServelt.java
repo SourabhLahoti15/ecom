@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import dao.AddressDAOImpl;
 import model.Address;
 
-@WebServlet({ "/addAddress", "/updateAddress", "/getAddress" })
+@WebServlet({ "/addAddress", "/updateAddress", "/getAddress", "/deleteAddress" })
 public class AddressServelt extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,7 +48,6 @@ public class AddressServelt extends HttpServlet {
                 if (isAdded) {
                     List<Address> addresses = addressDAO.getAddressesByUserId(uid);
                     session.setAttribute("addresses", addresses);
-
                     response.getWriter().write("{\"success\": true, \"message\": \"Address added successfully!\", \"type\": \"success\"}");
                 }
                 else{
@@ -65,11 +65,29 @@ public class AddressServelt extends HttpServlet {
                     session.setAttribute("addresses", addresses);
 
                     response.getWriter().write("{\"success\": true, \"message\": \"Address updated successfully!\", \"type\": \"success\"}");
-                }
-                else{
+                } else {
                     response.getWriter().write("{\"success\": false, \"message\": \"Failed to update address!\", \"type\": \"error\"}");
                 }
             }       
+        } else if ("/deleteAddress".equals(action)) {
+            try {
+                String addressIdParam = request.getParameter("addressId");
+                int addressId = Integer.parseInt(addressIdParam);
+                boolean isDeleted = addressDAO.deleteAddress(addressId);
+                if (isDeleted) {
+                    List<Address> addresses = addressDAO.getAddressesByUserId(uid);
+                    session.setAttribute("addresses", addresses);
+                    response.getWriter().write("{\"success\": true, \"message\": \"Address deleted successfully!\", \"type\": \"success\"}");
+                } else {
+                    response.getWriter().write("{\"success\": false, \"message\": \"Failed to delete address!\", \"type\": \"error\"}");
+                }                
+            } catch (SQLException e) {
+                if (e.getSQLState().equals("23000")) {
+                    response.getWriter().write("{\"success\": false, \"message\": \"Cannot delete this address as there are orders to deliver on this address.\", \"type\": \"error\"}");
+                } else {
+                    response.getWriter().write("{\"success\": false, \"message\": \"An exception occurred while deleting the address.\", \"type\": \"error\"}");
+                }
+            }
         }
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

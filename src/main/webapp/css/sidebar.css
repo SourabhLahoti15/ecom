@@ -134,11 +134,39 @@ hr{
 }
 .address:hover{
     cursor: pointer;
-    background-color: #353535;
+    background-color: #33333395;
 }
 .address-description{
     color: grey;
     font-size: 17px;
+}
+.add-title-btn{
+    display: flex;
+    justify-content: space-between;
+}
+.delete-address-btn{
+    position: absolute;
+    right: 20px;
+    padding: 5px;
+    background-color: rgb(128, 128, 128, 0.8);
+    color: white;
+    box-shadow: inset;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    font-size: 20px;
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    cursor: pointer;
+}
+.address:hover .delete-address-btn{
+    opacity: 1;
+}
+.delete-address-btn:hover{
+    transform: scale(1.05);
+}
+.delete-address-btn:active{
+    transform: scale(0.95);
 }
 .sidebar-links{
     margin: 10px;
