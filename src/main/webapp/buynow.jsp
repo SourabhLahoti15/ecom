@@ -89,9 +89,7 @@
                                 const paymentRadios = document.querySelectorAll('input[name="paymentMode"]');
 
                                 if (addressRadios.length === 0) {
-                                    const addAddressLink = document.querySelector('.add-another-address');
-                                    addAddressLink.setCustomValidity('Please add an address before placing the order.');
-                                    addAddressLink.reportValidity();
+                                    showNotification('false','Add an address to place order.','error');
                                     return false;
                                 }
 

@@ -48,6 +48,9 @@ public class AddressServelt extends HttpServlet {
                 if (isAdded) {
                     List<Address> addresses = addressDAO.getAddressesByUserId(uid);
                     session.setAttribute("addresses", addresses);
+                    // String referer = request.getHeader("Referer");
+                    // String redirectUrl = referer != null ? referer : "home.jsp";
+                    // response.getWriter().write("{\"success\": true, \"message\": \"Address added successfully!\", \"type\": \"success\", \"redirectUrl\": \""+redirectUrl+"\" }");
                     response.getWriter().write("{\"success\": true, \"message\": \"Address added successfully!\", \"type\": \"success\"}");
                 }
                 else{

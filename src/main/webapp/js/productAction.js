@@ -173,6 +173,42 @@ function buynow(productId) {
             showNotification(false, 'Error occurred while processing request.', 'error');
         });
 }
+function addAddress(event) {
+    event.preventDefault(); 
+
+    const form = document.getElementById('addAddressForm');
+    const formData = new URLSearchParams(new FormData(form));
+
+    fetch('/gu/addAddress', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            fetch('/gu/sidebar')
+            .then(response => response.text())
+            .then(html => {
+                document.querySelector('.sidebar-address').innerHTML = html;
+            });
+            localStorage.setItem('notification', JSON.stringify({
+                success: data.success,
+                message: data.message,
+                type: data.type
+            }));
+            window.location.href = document.referrer;
+        } else {
+            showNotification(data.success, data.message, data.type);
+        }
+    })
+    .catch(error => {
+        console.error("Error while adding address:", error);
+        showNotification(false, "Error occured while adding address.", "error");
+    });
+}
 function deleteAddress(addressId) {
     const url = "/gu/deleteAddress?addressId=" + addressId;
     console.log(url);

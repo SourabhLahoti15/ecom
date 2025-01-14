@@ -73,6 +73,7 @@
         </form>
     </main>
     <script src="js/notification.js"></script>
+    <script src="js/productAction.js"></script>
     <script>
         function validateAddressForm(event) {
             var pincode = document.getElementById("pincode");
@@ -110,35 +111,6 @@
         document.getElementById('pincode').addEventListener('input', function() {
             this.setCustomValidity('');
         });
-        function addAddress(event) {
-            event.preventDefault(); 
-
-            const form = document.getElementById('addAddressForm');
-            const formData = new URLSearchParams(new FormData(form));
-
-            fetch('/gu/addAddress', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    fetch('/gu/sidebar')
-                    .then(response => response.text())
-                    .then(html => {
-                        document.querySelector('.sidebar-address').innerHTML = html;
-                    });
-                }
-                showNotification(data.success, data.message, data.type);
-            })
-            .catch(error => {
-                console.error("Error while adding address:", error);
-                showNotification(false, "Error occured while adding address.", "error");
-            });
-        }
     </script>
 </body>
 
