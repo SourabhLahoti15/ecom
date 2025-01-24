@@ -9,6 +9,7 @@
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
                     <title>Document</title>
+                    <link rel="stylesheet" href="css/longCard.css">
                     <link rel="stylesheet" href="css/sidebar.css">
                     <link rel="stylesheet" href="css/wishlist.css">
                     <link rel="stylesheet"
@@ -21,6 +22,8 @@
                 <body>
                     <main>
                         <div class="products">
+                            <h2><%= session.getAttribute("wishlist_count") != null
+                                ? "Wishlist ("+session.getAttribute("wishlist_count")+")" : "" %></h2>
                             <c:forEach var="wishlistItem" items="${wishlistItems}">
                                 <c:set var="product" value="${productMap[wishlistItem.productId]}" />
                                 <div class="product" onclick="window.location.href='/gu/product?productId=${wishlistItem.productId}'">
@@ -32,7 +35,7 @@
                                             <h2 class="product-name">${product.productName}</h2>
                                             <p class="product-description">${product.productDescription}</p>
                                             <p class="product-price">Rs. ${product.productPrice}</p>
-                                            <p class="ordered-at">Added to wishlist on ${wishlistItem.addedDate}</p>
+                                            <p class="added-at">Added to wishlist on ${wishlistItem.addedDate}</p>
                                         </div>
                                     </div>
                                     <div class="btns">

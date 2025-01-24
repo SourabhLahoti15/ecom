@@ -17,6 +17,7 @@
     <main>
         <form id="addAddressForm" name="addAddressForm" method="POST" onsubmit="validateAddressForm(event)">
             <h2>Add Address</h2>
+            <input type="hidden" id="actionType" name="actionType" value="add">
             <!-- User ID -->
             <input type="hidden" name="userId" value="${user.userId}">
 
@@ -73,45 +74,7 @@
         </form>
     </main>
     <script src="js/notification.js"></script>
-    <script src="js/productAction.js"></script>
-    <script>
-        function validateAddressForm(event) {
-            var pincode = document.getElementById("pincode");
-            var phone = document.getElementById("mobile");
-
-            pincode.setCustomValidity("");
-            phone.setCustomValidity("");
-
-            let isValid = true;
-            
-            // pincode validation
-            if (pincode.value.length != 6) {
-                pincode.setCustomValidity("Pincode must be of 6 digits");
-                pincode.reportValidity();
-                isValid = false;
-            }
-            // Phone validation
-            var phonePattern = /^[0-9]{10}$/;
-            if (!phone.value.match(phonePattern)) {
-                phone.setCustomValidity("Please enter a valid 10-digit phone number.");
-                phone.reportValidity();
-                isValid = false;
-            }
-
-            if (!isValid) {
-                event.preventDefault();
-            } else{
-                addAddress(event);
-            }
-            return isValid;
-        }
-        document.getElementById('mobile').addEventListener('input', function() {
-            this.setCustomValidity('');
-        });
-        document.getElementById('pincode').addEventListener('input', function() {
-            this.setCustomValidity('');
-        });
-    </script>
+    <script src="js/address.js"></script>
 </body>
 
 </html>

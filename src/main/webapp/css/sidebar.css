@@ -139,6 +139,11 @@ hr{
 .address-description{
     color: grey;
     font-size: 17px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .add-title-btn{
     display: flex;

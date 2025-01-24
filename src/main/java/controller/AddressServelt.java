@@ -65,8 +65,7 @@ public class AddressServelt extends HttpServlet {
                 isUpdated = addressDAO.updateAddress(address);    
                 if (isUpdated) {
                     List<Address> addresses = addressDAO.getAddressesByUserId(uid);
-                    session.setAttribute("addresses", addresses);
-
+                    session.setAttribute("addresses", addresses);                    
                     response.getWriter().write("{\"success\": true, \"message\": \"Address updated successfully!\", \"type\": \"success\"}");
                 } else {
                     response.getWriter().write("{\"success\": false, \"message\": \"Failed to update address!\", \"type\": \"error\"}");

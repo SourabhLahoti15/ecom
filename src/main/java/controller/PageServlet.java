@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.locks.ReadWriteLock;
 
-import javax.security.auth.message.callback.PrivateKeyCallback;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,11 +17,13 @@ import dao.AddressDAOImpl;
 import dao.CartDAOImpl;
 import dao.OrderDAOImpl;
 import dao.ProductDAOImpl;
+import dao.SavelaterDAOImpl;
 import dao.WishlistDAOImpl;
 import model.Address;
 import model.Cart;
 import model.Order;
 import model.Product;
+import model.Savelater;
 import model.Wishlist;
 
 @WebServlet({ "/home", "/profile", "/notification", "/cart", "/wishlist", "/orders", "/become-seller", "/product", "/sidebar" })
@@ -36,6 +36,7 @@ public class PageServlet extends HttpServlet {
         int uid;
         RequestDispatcher rd;
         CartDAOImpl cartDAO;
+        SavelaterDAOImpl savelaterDAO;
         WishlistDAOImpl wishlistDAO;
         ProductDAOImpl productDAO;
         OrderDAOImpl orderDAO;
@@ -67,14 +68,31 @@ public class PageServlet extends HttpServlet {
                 uid = (int) session.getAttribute("user_id");
                 cartDAO = new CartDAOImpl();
                 productDAO = new ProductDAOImpl();
+                float cartCheckedTotalPrice = cartDAO.checkedCartTotalPrice(uid);
                 List<Cart> cartItems = cartDAO.getCartItemsByUserId(uid);
+                List<Cart> cartCheckedItems = cartDAO.getCheckedCartItemsByUserId(uid);
                 Map<Integer, Product> cartProductMap = new HashMap<>();
                 for (Cart cartItem : cartItems) {
                     Product product = productDAO.getProductById(cartItem.getProductId());
                     cartProductMap.put(cartItem.getProductId(), product);
                 }
                 request.setAttribute("cartItems", cartItems);
-                request.setAttribute("productMap", cartProductMap);
+                request.setAttribute("cartCheckedItems", cartCheckedItems);
+                request.setAttribute("cartProductMap", cartProductMap);
+                request.setAttribute("cartCheckedTotalPrice", cartCheckedTotalPrice);
+
+                savelaterDAO = new SavelaterDAOImpl();
+                List<Savelater> savelaterItems = savelaterDAO.getSavelaterItemsByUserId(uid);
+                Map<Integer, Product> savelaterProductMap = new HashMap<>();
+                int savelaterCount = savelaterItems.size();
+                for (Savelater savelaterItem : savelaterItems) {
+                    Product product = productDAO.getProductById(savelaterItem.getProductId());
+                    savelaterProductMap.put(savelaterItem.getProductId(), product);
+                }
+                request.setAttribute("savelaterItems", savelaterItems);
+                request.setAttribute("savelaterProductMap", savelaterProductMap);
+                session.setAttribute("savelater_count", savelaterCount);
+
                 request.getRequestDispatcher("cart.jsp").forward(request, response);
                 break;
             case "/wishlist":

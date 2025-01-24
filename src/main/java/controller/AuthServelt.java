@@ -53,6 +53,9 @@ public class AuthServelt extends HttpServlet {
                     int cartCount = cartDAO.getCartItemsByUserId(user.getUserId()).size();
                     session.setAttribute("cart_count", cartCount);
 
+                    int checkedCartCount = cartDAO.getCheckedCartItemsByUserId(user.getUserId()).size();
+                    session.setAttribute("checked_cart_count", checkedCartCount);
+
                     int wishlistCount = wishlistDAO.getWishlistItemsByUserId(user.getUserId()).size();
                     session.setAttribute("wishlist_count", wishlistCount);
                     

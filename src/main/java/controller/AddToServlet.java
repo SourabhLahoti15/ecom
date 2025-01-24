@@ -10,9 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.CartDAOImpl;
+import dao.SavelaterDAOImpl;
 import dao.WishlistDAOImpl;
 
-@WebServlet({"/addToCart", "/addToWishlist"})
+@WebServlet({"/addToCart", "/addToWishlist", "/saveForLater", "/moveToCart"})
 public class AddToServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,26 +32,71 @@ public class AddToServlet extends HttpServlet {
         String action = request.getServletPath();
         boolean isAdded;
 
-        if ("/addToCart".equals(action)) {
-            CartDAOImpl cartDAO = new CartDAOImpl();
-            isAdded = cartDAO.addItemToCart(uid, product_id);
-            if (isAdded) {
-                int cartCount = cartDAO.getCartItemsByUserId(uid).size();
-                session.setAttribute("cart_count", cartCount);
-                response.getWriter().write("{\"success\": true, \"message\": \"Product added to cart successfully!\", \"type\": \"success\", \"cart_count\": " + cartCount + "}");
-            } else {
-                response.getWriter().write("{\"success\": false, \"message\": \"Product is already in cart.\", \"type\": \"warning\"}");
+        if (null != action) switch (action) {
+            case "/addToCart":{
+                CartDAOImpl cartDAO = new CartDAOImpl();
+                isAdded = cartDAO.addItemToCart(uid, product_id);
+                if (isAdded) {
+                    int cartCount = cartDAO.getCartItemsByUserId(uid).size();
+                    session.setAttribute("cart_count", cartCount);
+
+                    int checkedCartCount = cartDAO.getCheckedCartItemsByUserId(uid).size();
+                    session.setAttribute("checked_cart_count", checkedCartCount);
+                    response.getWriter().write("{\"success\": true, \"message\": \"Product added to cart successfully!\", \"type\": \"success\", \"cart_count\": " + cartCount + "}");
+                    // response.getWriter().write("{\"success\": true, \"message\": \"Product added to cart successfully!\", \"type\": \"success\"}");
+                } else {
+                    response.getWriter().write("{\"success\": false, \"message\": \"Product is already in cart.\", \"type\": \"warning\"}");
+                }   
+                break;
             }
-        } else if ("/addToWishlist".equals(action)) {
-            WishlistDAOImpl wishlistDAO = new WishlistDAOImpl();
-            isAdded = wishlistDAO.addItemToWishlist(uid, product_id);
-            if (isAdded) {
-                int wishlistCount = wishlistDAO.getWishlistItemsByUserId(uid).size();
-                session.setAttribute("wishlist_count", wishlistCount);
-                response.getWriter().write("{\"success\": true, \"message\": \"Product added to wishlist successfully!\", \"type\": \"success\", \"wishlist_count\": " + wishlistCount + "}");
-            } else {
-                response.getWriter().write("{\"success\": false, \"message\": \"Product is already in wishlist.\", \"type\": \"warning\"}");
+            case "/addToWishlist":{
+                WishlistDAOImpl wishlistDAO = new WishlistDAOImpl();
+                isAdded = wishlistDAO.addItemToWishlist(uid, product_id);
+                if (isAdded) {
+                    int wishlistCount = wishlistDAO.getWishlistItemsByUserId(uid).size();
+                    session.setAttribute("wishlist_count", wishlistCount);
+                    response.getWriter().write("{\"success\": true, \"message\": \"Product added to wishlist successfully!\", \"type\": \"success\", \"wishlist_count\": " + wishlistCount + "}");
+                } else {
+                    response.getWriter().write("{\"success\": false, \"message\": \"Product is already in wishlist.\", \"type\": \"warning\"}");
+                }   
+                break;
             }
+            case "/saveForLater":{
+                CartDAOImpl cartDAO = new CartDAOImpl();
+                boolean isRemoved = cartDAO.removeItemFromCart(uid, product_id);
+                SavelaterDAOImpl savelaterDAO = new SavelaterDAOImpl();
+                isAdded = savelaterDAO.addItemToSavelater(uid, product_id);
+                if (isAdded && isRemoved) {
+                    int cartCount = cartDAO.getCartItemsByUserId(uid).size();
+                    session.setAttribute("cart_count", cartCount);
+                    int checkedCartCount = cartDAO.getCheckedCartItemsByUserId(uid).size();
+                    session.setAttribute("checked_cart_count", checkedCartCount);
+                    // int savelaterCount = savelaterDAO.getSavelaterItemsByUserId(uid).size();
+                    // session.setAttribute("savelater_count", savelaterCount);
+                    response.getWriter().write("{\"success\": true, \"message\": \"Saved for later.\", \"type\": \"success\"}");
+                } else {
+                    response.getWriter().write("{\"success\": false, \"message\": \"Failed to saved for later.\", \"type\": \"error\"}");
+                }   
+                break;
+            }
+            case "/moveToCart":{
+                SavelaterDAOImpl savelaterDAO = new SavelaterDAOImpl();
+                boolean isRemoved = savelaterDAO.removeItemFromSavelater(uid, product_id);
+                CartDAOImpl cartDAO = new CartDAOImpl();
+                isAdded = cartDAO.addItemToCart(uid, product_id);
+                if (isAdded && isRemoved) {
+                    int cartCount = cartDAO.getCartItemsByUserId(uid).size();
+                    session.setAttribute("cart_count", cartCount);
+                    int checkedCartCount = cartDAO.getCheckedCartItemsByUserId(uid).size();
+                    session.setAttribute("checked_cart_count", checkedCartCount);
+                    response.getWriter().write("{\"success\": true, \"message\": \"Moved to cart.\", \"type\": \"success\"}");
+                } else {
+                    response.getWriter().write("{\"success\": false, \"message\": \"Failed to move to cart.\", \"type\": \"error\"}");
+                }   
+                break;
+            }
+            default:
+                break;
         }
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
