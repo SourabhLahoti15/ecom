@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="css/longCard.css">
     <link rel="stylesheet" href="css/orders.css">
     <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -29,7 +30,7 @@
                             <h2 class="product-name">${product.productName}</h2>
                             <p class="product-description">${product.productDescription}</p>
                             <p class="product-price">Rs. ${order.orderAmount}</p>
-                            <p class="ordered-at">Ordered on ${order.orderedAt}</p>
+                            <p class="added-at">Ordered on ${order.orderedAt}</p>
                         </div>
                     </div>
                     <div class="btns">                               

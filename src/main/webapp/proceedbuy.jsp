@@ -20,15 +20,29 @@
 
                     <body>
                         <main>
-                            <div class="product">
-                                <div class="product-img">
-                                    <img src="${product.imagePath}" alt="Product Image">
-                                </div>
-                                <div class="product-details">
-                                    <h2 class="product-name">${product.productName}</h2>
-                                    <p class="product-description">${product.productDescription}</p>
-                                    <p class="product-price">${product.productPrice}</p>
-                                </div>
+                            <div class="products">
+                                <c:forEach var="cartItem" items="${cartItems}">
+                                    <c:set var="product" value="${cartProductMap[cartItem.productId]}" />
+                                    <div class="product"
+                                        onclick="window.location.href='/gu/product?productId=${cartItem.productId}'">
+                                        <div class="product-content">
+                                            <div class="product-img">
+                                                <img src="${product.imagePath}" alt="Product Image">
+                                            </div>
+                                            <div class="product-details">
+                                                <h2 class="product-name">${product.productName}</h2>
+                                                <p class="product-description">${product.productDescription}</p>
+                                                <p class="product-price">Rs. ${product.productPrice}</p>
+                                                <div class="added-move">
+                                                    <p class="added-at">Added to cart on ${cartItem.addedDate}</p>
+                                                    <a class="save-later-a" href="#"
+                                                        onclick="event.stopPropagation(); saveForLater('${cartItem.productId}')">Save
+                                                        for later</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </c:forEach>
                             </div>
                             <form class="buynow-form" name="buynow-form" method="POST">
                                 <input type="hidden" name="productId" value="${product.productId}">
@@ -78,7 +92,6 @@
                             </form>
                         </main>
                         <script src="js/notification.js"></script>
-                        <script src="js/productAction.js"></script>
                         <script>document.forms["buynow-form"].onsubmit = function (event) {
                                 const form = document.querySelector('.buynow-form');
 
@@ -130,6 +143,7 @@
                             };
 
                         </script>
+                        <script src="js/productAction.js"></script>
                     </body>
 
                     </html>

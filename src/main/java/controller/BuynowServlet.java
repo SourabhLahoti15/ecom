@@ -59,7 +59,7 @@ public class BuynowServlet extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("buynow.jsp");
             rd.forward(request, response);
 
-        } catch (Exception e) {
+        } catch (IOException | NumberFormatException | ServletException e) {
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write("{\"success\": false, \"message\": \"An exception occurred: " + e.getMessage() + "\", \"type\": \"error\"}");

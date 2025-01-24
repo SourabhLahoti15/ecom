@@ -129,10 +129,20 @@ main {
 
 .buy-address-description {
     color: #b3b3b3;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .add-another-address{
     color: #2f6eb6;
+    width: fit-content;
     text-decoration: none;
+}
+.add-another-address:hover{
+    cursor: pointer;
+    text-decoration: underline;
 }
 .place-order-btn {
     /* margin: 1rem 0; */

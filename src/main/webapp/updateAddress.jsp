@@ -17,6 +17,7 @@
     <main>
         <form id="updateAddressForm" method="POST" name="updateAddressForm" onsubmit="validateAddressForm(event)">
             <h2>update Address</h2>
+            <input type="hidden" id="actionType" name="actionType" value="update">
             <!-- AddressId -->
             <input type="hidden" name="addressId" value="${address.addressId}">
 
@@ -76,72 +77,7 @@
         </form>
     </main>
     <script src="js/notification.js"></script>
-    <script>
-        function validateAddressForm(event) {
-            var pincode = document.getElementById("pincode");
-            var phone = document.getElementById("mobile");
-
-            pincode.setCustomValidity("");
-            phone.setCustomValidity("");
-
-            let isValid = true;
-            
-            // pincode validation
-            if (pincode.value.length != 6) {
-                pincode.setCustomValidity("Pincode must be of 6 digits");
-                pincode.reportValidity();
-                isValid = false;
-            }
-            // Phone validation
-            var phonePattern = /^[0-9]{10}$/;
-            if (!phone.value.match(phonePattern)) {
-                phone.setCustomValidity("Please enter a valid 10-digit phone number.");
-                phone.reportValidity();
-                isValid = false;
-            }
-
-            if (!isValid) {
-                event.preventDefault();
-            } else{
-                updateAddress(event);
-            }
-            return isValid;
-        }
-        document.getElementById('mobile').addEventListener('input', function() {
-            this.setCustomValidity('');
-        });
-        document.getElementById('pincode').addEventListener('input', function() {
-            this.setCustomValidity('');
-        });
-        function updateAddress(event) {
-            event.preventDefault(); 
-
-            const form = document.getElementById('updateAddressForm');
-            const formData = new URLSearchParams(new FormData(form));
-
-            fetch('/gu/updateAddress', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    fetch('/gu/sidebar')
-                .then(response => response.text())
-                .then(html => {
-                    document.querySelector('.sidebar-address').innerHTML = html;
-                });
-                }
-                showNotification(data.success, data.message, data.type);
-            })
-            .catch(error => {
-                showNotification(false, "Error occured while updating address", "error");
-            });
-        }
-    </script>
+    <script src="js/address.js"></script>
 </body>
 
 </html>

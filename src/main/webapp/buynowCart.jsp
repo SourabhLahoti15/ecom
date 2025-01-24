@@ -11,6 +11,7 @@
                         <meta name="viewport" content="width=device-width, initial-scale=1.0">
                         <title>Document</title>
                         <link rel="stylesheet" href="css/buynow.css">
+                        <link rel="stylesheet" href="css/buynowCart.css">
                         <link rel="stylesheet"
                             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
                             integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
@@ -20,14 +21,32 @@
 
                     <body>
                         <main>
-                            <div class="product">
-                                <div class="product-img">
-                                    <img src="${product.imagePath}" alt="Product Image">
+                            <div class="products-bill">
+                                <div class="products">
+                                    <c:forEach var="cartItem" items="${cartItems}">
+                                        <c:set var="product" value="${cartProductMap[cartItem.productId]}" />
+                                        <div class="product" id="product-${cartItem.productId}"
+                                            onclick="window.location.href='/gu/product?productId=${cartItem.productId}'">
+                                            <div class="product-content">
+                                                <input type="checkbox" class="product-checkbox"
+                                                    data-product-id="${cartItem.productId}" ${cartItem.isChecked
+                                                    ? 'checked' : '' } onclick="event.stopPropagation();">
+                                                <div class="product-img">
+                                                    <img src="${product.imagePath}" alt="Product Image">
+                                                </div>
+                                                <div class="product-details">
+                                                    <h2 class="product-name">${product.productName}</h2>
+                                                    <p class="product-description">${product.productDescription}</p>
+                                                    <p class="product-price">Rs. ${product.productPrice}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </c:forEach>
                                 </div>
-                                <div class="product-details">
-                                    <h2 class="product-name">${product.productName}</h2>
-                                    <p class="product-description">${product.productDescription}</p>
-                                    <p class="product-price">${product.productPrice}</p>
+                                <div class="bill">
+                                    <hr>
+                                    <p class="total-amount">Total Amount(${fn:length(checkedCartItems)} items):
+                                        ${checkedCartTotalPrice}</p>
                                 </div>
                             </div>
                             <form class="buynow-form" name="buynow-form" method="POST">
@@ -74,12 +93,12 @@
                                         <label for="paymentCOD">Cash on Delivery</label>
                                     </div>
                                 </div>
-                                <button type="submit" class="place-order-btn">Place Order</button>
+                                <button type="submit" class="place-order-btn">Place Orders</button>
                             </form>
                         </main>
                         <script src="js/notification.js"></script>
-                        <script src="js/productAction.js"></script>
-                        <script>document.forms["buynow-form"].onsubmit = function (event) {
+                        <script>
+                            document.forms["buynow-form"].onsubmit = function (event) {
                                 const form = document.querySelector('.buynow-form');
 
                                 form.querySelectorAll('input[name="addressId"], input[name="paymentMode"]').forEach(input => {
@@ -90,7 +109,7 @@
                                 const paymentRadios = document.querySelectorAll('input[name="paymentMode"]');
 
                                 if (addressRadios.length === 0) {
-                                    showNotification('false','Add an address to place order.','error');
+                                    showNotification('false', 'Add an address to place order.', 'error');
                                     return false;
                                 }
 
@@ -125,11 +144,37 @@
                                 }
 
                                 const productId = form.querySelector('input[name="productId"]').value;
-                                placeOrder(productId);
+                                placeOrders();
                                 return false;
                             };
+                            document.querySelectorAll('.product-checkbox').forEach(checkbox => {
+                                checkbox.addEventListener('change', function () {
+                                    event.preventDefault();
+                                    const productId = this.dataset.productId;
+                                    const isChecked = this.checked;
 
+                                    const formData = new URLSearchParams();
+                                    formData.append('productId', productId);
+                                    formData.append('isChecked', isChecked);
+
+                                    fetch('/gu/updateProductCheckStatus', {
+                                        method: 'POST',
+                                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                                        body: formData.toString()
+                                    })
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            if (data.success) {
+                                                location.reload();
+                                            } else {
+                                                showNotification("false", "Failed to update cart status.", "error");
+                                            }
+                                        })
+                                        .catch(error => console.error('Error updating product check status:', error));
+                                });
+                            });
                         </script>
+                        <script src="js/productAction.js"></script>
                     </body>
 
                     </html>

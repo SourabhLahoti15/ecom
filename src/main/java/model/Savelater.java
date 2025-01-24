@@ -2,20 +2,18 @@ package model;
 
 import java.sql.Timestamp;
 
-public class Cart {
+public class Savelater {
     private int userId;
     private int productId;
     private Timestamp addedDate;
-    private boolean isChecked;
 
     // Constructor
-    public Cart(int userId, int productId, Timestamp addedDate, boolean isChecked) {
+    public Savelater(int userId, int productId, Timestamp addedDate) {
         this.userId = userId;
         this.productId = productId;
         this.addedDate = addedDate;
-        this.isChecked = isChecked;
     }
-    public Cart(int userId, int productId) {
+    public Savelater(int userId, int productId) {
         this.userId = userId;
         this.productId = productId;
     }
@@ -44,13 +42,4 @@ public class Cart {
     public void setAddedDate(Timestamp addedDate) {
         this.addedDate = addedDate;
     }
-
-    public boolean getIsChecked() {
-        return isChecked;
-    }
-
-    public void setIsChecked(boolean isChecked) {
-        this.isChecked = isChecked;
-    }
-
 }

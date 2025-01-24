@@ -33,15 +33,15 @@
                             <span>Notifications</span>
                         </div>
                         <hr>
-                        <div class="cart" onclick="window.location.href='/gu/cart'">
+                        <div class="sidebar-cart" onclick="window.location.href='/gu/cart'">
                             <i class="fa-solid fa-cart-shopping"></i>
-                            <span class="cart-count">Cart <%= session.getAttribute("cart_count") !=null ? "("
+                            <span class="sidebar-cart-count">Cart <%= session.getAttribute("cart_count") !=null ? "("
                                     +session.getAttribute("cart_count")+")" : "" %></span>
                         </div>
                         <hr>
                         <div class="wishlist" onclick="window.location.href='/gu/wishlist'">
                             <i class="fa-regular fa-heart"></i>
-                            <span class="wishlist-count">Wishlist <%= session.getAttribute("wishlist_count") !=null
+                            <span class="sidebar-wishlist-count">Wishlist <%= session.getAttribute("wishlist_count") !=null
                                     ? "(" +session.getAttribute("wishlist_count")+")" : "" %></span>
                         </div>
                         <hr>

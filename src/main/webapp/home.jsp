@@ -35,11 +35,15 @@
                         <button class="addtocart" onclick='event.stopPropagation(); addToCart("${product.productId}")'>
                             <i class="fa-solid fa-cart-plus"></i>
                         </button>
-                        <img src="${product.imagePath}" alt="Product Image">
-                        <div class="product-details">
-                            <div class="product-name"><b>${product.productName}</b></div>
-                            <div class="product-description">${product.productDescription}</div>
-                            <div class="product-price">Rs. ${product.productPrice}</div>
+                        <div class="product-contents">
+                            <div class="product-img">
+                                <img src="${product.imagePath}" alt="Product Image">
+                            </div>
+                            <div class="product-details">
+                                <div class="product-name"><b>${product.productName}</b></div>
+                                <div class="product-description">${product.productDescription}</div>
+                                <div class="product-price">Rs. ${product.productPrice}</div>
+                            </div>
                         </div>
                         <button class="buynow-btn" onclick="buynow('${product.productId}'); event.stopPropagation();">Buy Now</button>
                     </div>
