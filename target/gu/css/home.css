@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    user-select: none;
+}
+body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: fit-content;
+}
+main {
+    margin: 10vh 10px 10px 23%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 30px;
+    color: white;
+    background-color: #242424;
+    overflow-y: auto;
+    height: fit-content;
+}
+.heading {
+    display: flex;
+    justify-content: space-between;
+}
+
+.show-all {
+    font-weight: 600;
+    color: grey;
+}
+
+.show-all:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.division {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: fit-content;
+    overflow-y: visible;
+}

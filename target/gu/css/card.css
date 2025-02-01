@@ -1,0 +1,265 @@
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 170px));
+    grid-gap: 30px 15px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 10px;
+    width: 170px;
+    height: 300px;
+    overflow: hidden;
+    backdrop-filter: blur(8px);
+    /* background-color: #353535; */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.card:hover {
+    cursor: pointer;
+    background-color: rgb(46, 46, 46);
+    transform: scale(1.05);
+}
+
+.card:active:not(:has(.addtowishlist:active)):not(:has(.addtocart:active)):not(:has(.buynow-btn:active)):not(:has(.edit:active)):not(:has(.delete:active)) {
+    background-color: rgba(46, 46, 46, 0.9);
+    transform: scale(0.98);
+}
+/* addtowishlist */
+.addtowishlist {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 8px 6px 5px 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background-color: white;
+    opacity: 0;
+    z-index: 1;
+    transition: 0.3s opacity ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.card:hover .addtowishlist {
+    opacity: 1;
+}
+
+.addtowishlist i {
+    font-size: 25px;
+    color: #353535;
+}
+
+.addtowishlist:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.02);
+}
+
+.addtowishlist:active {
+    background-color: #e0e0e0;
+    transform: scale(0.95);
+}
+
+/* addtocart */
+.addtocart {
+    position: absolute;
+    top: 120px;
+    right: 5px;
+    padding: 8px 6px 5px 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background-color: white;
+    opacity: 0;
+    z-index: 1;
+    transition: 0.3s opacity ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.card:hover .addtocart {
+    opacity: 1;
+}
+
+.addtocart i {
+    font-size: 25px;
+    color: #353535;
+}
+
+.addtocart:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.02);
+}
+
+.addtocart:active {
+    background-color: #e0e0e0;
+    transform: scale(0.95);
+}
+
+/* edit */
+.edit {
+    position: absolute;
+    top: 120px;
+    left: 5px;
+    padding: 8px 6px 5px 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    opacity: 0;
+    z-index: 1;
+    transition: 0.3s opacity ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.card:hover .edit {
+    opacity: 1;
+}
+
+.edit i {
+    font-size: 25px;
+    color: #353535;
+}
+
+.edit:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.02);
+}
+
+.edit:active {
+    background-color: #e0e0e0;
+    transform: scale(0.95);
+}
+
+/* delete */
+.delete{
+    position: absolute;
+    top: 120px;
+    left: 50px;
+    padding: 8px 6px 5px 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 5px;
+    background-color: red;
+    opacity: 0;
+    z-index: 1;
+    cursor: pointer;
+    transition: 0.3s opacity ease, transform 0.3s ease;
+}
+.card:hover .delete {
+    opacity: 1;
+}
+
+.delete i {
+    font-size: 25px;
+    color: white;
+}
+
+.delete:hover {
+    background-color: rgb(200, 0, 0);
+    transform: scale(1.02);
+}
+
+.delete:active {
+    background-color: red;
+    transform: scale(0.95);
+}
+
+/* buynow */
+.buynow-btn {
+    right: 0px;
+    left: 0px;
+    bottom: 0px;
+    padding: 10px;
+    visibility: hidden;
+    opacity: 0;
+    font-size: large;
+    border: none;
+    border-radius: 0px 0px 10px 10px;
+    width: 100%;
+    color: white;
+    background-color: rgb(5, 81, 48);
+    transition: visibility 0.3s, opacity 0.3s, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.card:hover .buynow-btn {
+    visibility: visible;
+    opacity: 1;
+}
+
+.buynow-btn:hover {
+    background-color: rgb(6, 91, 54);
+}
+
+.buynow-btn:active {
+    background-color: rgb(4, 70, 42);
+    transform: scale(0.95);
+}
+.product-contents{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100%;
+}
+.product-img{
+    margin: 10px auto 0px auto;
+    border-radius: 5px;
+    width: calc(100% - 20px);
+    min-height: 55%;
+    max-height: 55%;
+    background-color: rgb(20, 59, 46);
+}
+.product-img img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.product-details {
+    margin: 0px 10px;
+    display: flex;
+    flex-direction: column;
+    height: 45%;
+    justify-content: space-around;
+    gap: 4px;
+    overflow-x: hidden;
+}
+
+.product-name,
+.product-price {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.product-name{
+    font-size: 1.3rem;
+}
+.product-price {
+    font-size: 1.1rem;
+    color: rgb(230, 230, 230);
+}
+
+.product-description {
+    display: -webkit-box;
+    color: rgb(200, 200, 200);
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1.1rem;
+}
+

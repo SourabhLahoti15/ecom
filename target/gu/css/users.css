@@ -1,0 +1,119 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: black; 
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: fit-content;
+}
+
+main {
+    margin: 10vh 10px 10px 23%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1rem;
+    color: #e0e0e0; 
+    background-color: #242424; 
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-height: calc(100vh - 20vh - 20px); 
+    height: fit-content;
+}
+
+.users {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.users table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #2b2b2b; 
+    border-radius: 5px; 
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.users thead {
+    background-color: #163454; 
+    color: #fff;
+}
+
+.users thead th {
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.users tbody tr {
+    border-bottom: 1px solid #444; 
+    transition: background-color 0.3s ease;
+}
+
+.users tbody tr:hover {
+    background-color: #333; 
+}
+
+tbody td {
+    padding: 12px 15px;
+    font-size: 14px;
+    color: #e0e0e0;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #242424; 
+}
+
+tbody tr:nth-child(even):hover {
+    background-color: #2e2e2e; 
+}
+
+@media (max-width: 768px) {
+    main {
+        margin: 10vh 10px 10px 10px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    thead th {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    tbody td {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+}
+
+button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px; 
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:active {
+    background-color: #004080;
+}
