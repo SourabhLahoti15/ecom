@@ -14,11 +14,11 @@ RUN mvn clean package -DskipTests
 # Step 2: Final Stage (Runtime)
 FROM tomcat:9-jre8-slim
 
-# Set the working directory inside the container
-WORKDIR /usr/local/tomcat/webapps
+# Remove the default ROOT application
+RUN rm -rf /usr/local/tomcat/webapps/*
 
-# Copy the WAR file from the build stage
-COPY --from=builder /app/target/gu.war /usr/local/tomcat/webapps/gu.war
+# Copy the WAR file from the build stage and rename it to ROOT.war
+COPY --from=builder /app/target/gu.war /usr/local/tomcat/webapps/ROOT.war
 
 # Expose the Tomcat port (8080)
 EXPOSE 8080
