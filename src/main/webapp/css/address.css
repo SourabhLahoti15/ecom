@@ -9,9 +9,12 @@ body {
     margin: 0;
     padding: 0;
     background-color: black;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: fit-content;
 }
 main{
-    margin: 10px 10px 10px 23%;
+    margin: 10vh 10px 10px 23%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -19,7 +22,8 @@ main{
     color: white;
     background-color: #242424;
     overflow: none;
-    height: calc(100vh - 100px);
+    /* height: calc(100vh - 100px); */
+    height: fit-content;
 }
 form{
     margin: 10px;

@@ -49,7 +49,7 @@ public class UserDAOImplTest {
 
     @Test
     void testUpdateUser() {
-        User user = new User(1, "Ravi Kumar", "Male", "ravi.kumar@email.com", "password123", 9876543210L, "1990-05-15");
+        User user = new User(1, "Ravi Kumar", "Male", "ravi.kumar@email.com", "password123", 9876543210L, "1990-05-15", "user");
         boolean isUpdated = userDAO.updateUser(user);
         assertTrue(isUpdated);
     }

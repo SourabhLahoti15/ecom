@@ -7,6 +7,7 @@ import model.User;
 public interface UserDAO {
     boolean addUser(User user);
     User getUserbyId(int user_id);
+    String getRolebyUserId(int user_id);
     List<User> getAllUsers();
     boolean updateUser(User user);
     boolean deleteUser(int user_id);

@@ -13,10 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.AddressDAOImpl;
 import dao.CartDAOImpl;
 import dao.ProductDAOImpl;
-import model.Address;
 import model.Cart;
 import model.Product;
 
@@ -50,10 +48,7 @@ public class BuynowCartServlet extends HttpServlet {
                 Product product = productDAO.getProductById(cartItem.getProductId());
                 cartProductMap.put(cartItem.getProductId(), product);
             }
-            AddressDAOImpl addressDAO = new AddressDAOImpl();
-            List<Address> addresses = addressDAO.getAddressesByUserId(uid);
             
-            request.setAttribute("addresses", addresses);
             request.setAttribute("cartItems", cartItems);
             request.setAttribute("cartProductMap", cartProductMap);
             request.setAttribute("checkedCartItems", checkedCartItems);

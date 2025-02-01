@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,9 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.AddressDAOImpl;
 import dao.ProductDAOImpl;
-import model.Address;
 import model.Product;
 
 @WebServlet("/buynow")
@@ -49,16 +46,15 @@ public class BuynowServlet extends HttpServlet {
                 return;
             }
 
-            AddressDAOImpl addressDAO = new AddressDAOImpl();
-            List<Address> addresses = addressDAO.getAddressesByUserId(userId);
-
             request.setAttribute("product", product);
-            request.setAttribute("addresses", addresses);
 
             response.setContentType("text/html");
             RequestDispatcher rd = request.getRequestDispatcher("buynow.jsp");
             rd.forward(request, response);
-
+            // response.sendRedirect("buynow.jsp");
+            // response.setContentType("application/json");
+            // response.setCharacterEncoding("UTF-8");
+            // response.getWriter().write("{\"success\": true, \"redirectUrl\": \"buynow.jsp\"}");
         } catch (IOException | NumberFormatException | ServletException e) {
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");

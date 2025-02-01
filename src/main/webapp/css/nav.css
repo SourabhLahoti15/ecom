@@ -1,15 +1,18 @@
 nav{
-    position: sticky;
-    top: 10px;
-    margin: 10px 10px 0px 23%;
+    position: fixed;
+    top: 0px;
+    margin: 0px 10px 0px 23%;
     padding: 15px 20px;
-    /* width: 76.4%; */
     height: 9vh;
-    overflow-x: none;
+    width: calc(100vw - 23% - 10px);
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: #242424;
+    background-color: rgba(36, 36, 36, 0.9);
+    backdrop-filter: blur(10px);
+    z-index: 1;
 }
 #notification {
     position: absolute;

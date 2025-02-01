@@ -44,12 +44,14 @@ public class UserDAOImpl implements UserDAO {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 return new User(
-                        rs.getString(2),
-                        rs.getString(3),
-                        rs.getString(4),
-                        rs.getString(5),
-                        rs.getLong(6),
-                        rs.getString(7));
+                        rs.getInt("user_id"),
+                        rs.getString("user_name"),
+                        rs.getString("gender"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        rs.getLong("phone"),
+                        rs.getString("dob"),
+                        rs.getString("role"));
             } else {
                 System.out.println("No user found with user_id: " + user_id);
                 return null;
@@ -59,7 +61,22 @@ public class UserDAOImpl implements UserDAO {
             return null;
         }
     }
-
+    @Override
+    public String getRolebyUserId(int user_id){
+        String query = "SELECT role FROM user WHERE user_id = ?";
+        String role = null;
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, user_id);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                role = rs.getString("role");
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return role;
+    }
     @Override
     public List<User> getAllUsers() {
         String query = "SELECT * FROM user";
@@ -74,7 +91,8 @@ public class UserDAOImpl implements UserDAO {
                         rs.getString("gender"),
                         rs.getString("email"),
                         rs.getString("password"),
-                        rs.getInt("phone"),
+                        rs.getLong("phone"),
+                        rs.getString("role"),
                         rs.getString("dob")
                         );
                 users.add(user);
@@ -144,6 +162,7 @@ public class UserDAOImpl implements UserDAO {
                         rs.getString("email"),
                         rs.getString("password"),
                         rs.getLong("phone"),
+                        rs.getString("role"),
                         rs.getString("dob"));
             }
         } catch (SQLException e) {

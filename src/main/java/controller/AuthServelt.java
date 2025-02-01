@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.AddressDAOImpl;
 import dao.CartDAOImpl;
+import dao.NotificationDAOImpl;
 import dao.OrderDAOImpl;
 import dao.UserDAOImpl;
 import dao.WishlistDAOImpl;
@@ -39,6 +40,7 @@ public class AuthServelt extends HttpServlet {
             case "/loginCheck":
                 String email = request.getParameter("email");
                 String password = request.getParameter("password");
+                NotificationDAOImpl notificationDAO = new NotificationDAOImpl();
                 UserDAOImpl userDAO = new UserDAOImpl();
                 CartDAOImpl cartDAO = new CartDAOImpl();
                 WishlistDAOImpl wishlistDAO = new WishlistDAOImpl();
@@ -49,6 +51,9 @@ public class AuthServelt extends HttpServlet {
                     HttpSession session = request.getSession();
                     session.setAttribute("user_id", user.getUserId());
                     session.setAttribute("user_name", user.getName());
+
+                    int notificationCount = notificationDAO.getNotificationsByUserId(user.getUserId()).size();
+                    session.setAttribute("notification_count", notificationCount);
 
                     int cartCount = cartDAO.getCartItemsByUserId(user.getUserId()).size();
                     session.setAttribute("cart_count", cartCount);

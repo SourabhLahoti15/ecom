@@ -6,7 +6,7 @@ import model.Order;
 
 public interface OrderDAO {
 
-    boolean placeOrder(Order order);
+    int placeOrder(Order order);
     
     boolean updateOrder(Order order);
     

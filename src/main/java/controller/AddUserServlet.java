@@ -24,6 +24,12 @@ public class AddUserServlet extends HttpServlet {
             throws ServletException, IOException {
 
         response.setContentType("application/json");
+
+        UserDAOImpl userDAO = new UserDAOImpl();
+        CartDAOImpl cartDAO = new CartDAOImpl();
+        WishlistDAOImpl wishlistDAO = new WishlistDAOImpl();
+        OrderDAOImpl orderDAO = new OrderDAOImpl();
+
         String name = request.getParameter("name");
         String gender = request.getParameter("gender");
         String email = request.getParameter("email");
@@ -41,10 +47,6 @@ public class AddUserServlet extends HttpServlet {
         // }
 
         User user = new User(name, gender, email, password, phone, dob);
-        UserDAOImpl userDAO = new UserDAOImpl();
-        CartDAOImpl cartDAO = new CartDAOImpl();
-        WishlistDAOImpl wishlistDAO = new WishlistDAOImpl();
-        OrderDAOImpl orderDAO = new OrderDAOImpl();
         try {
             boolean isAdded = userDAO.addUser(user);
             if (isAdded) {

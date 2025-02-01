@@ -9,19 +9,23 @@ body {
     margin: 0;
     padding: 0;
     background-color: black;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: fit-content;
 }
 
 main {
-    margin: 10px 10px 10px 23%;
+    margin: 10vh 10px 10px 23%;
     padding: 0px;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    box-sizing: border-box;
     color: white;
     /* background-color: #242424; */
     background-color: black;
-    overflow: auto;
-    height: calc(100vh - 100px);
+    min-height: calc(100vh - 10vh);
+    max-height: fit-content;
 }
 .cart{
     padding: 0px;
@@ -171,29 +175,30 @@ main {
     transition: 0.3s opacity ease, transform 0.3s ease;
 }
 /* proceed buy */
-.proceedbuy{
+.checkout{
     /* margin: 0px 0.5rem; */
-    padding: 10px;
+    padding: 6px 10px;
     background-color: #c2fbd7;
     border-radius: 5px;
     color: green;
     cursor: pointer;
     text-align: center;
     border: 0;
-    font-size: 1rem;
-    font-weight: 800;
+    width: 100%;
+    font-size: 1.2rem;
+    font-weight: 900;
     transition: 0.3s opacity ease, transform 0.3s ease;
 }
-.proceedbuy:hover{
+.checkout:hover{
     transform: scale(1.03);
 }
-.proceedbuy:active{
+.checkout:active{
     transform: scale(0.97);
 }
 .buynow:hover,
 .addtowishlist:hover,
 .remove:hover{
-/* .proceedbuy:hover { */
+/* .checkout:hover { */
     transform: scale(1.05);
 }
 
@@ -206,23 +211,26 @@ main {
 .buynow:active,
 .addtowishlist:active,
 .remove:active{
-/* .proceedbuy:active { */
+/* .checkout:active { */
     transform: scale(0.9);
 }
 .products-bill{
+    position: relative;
     display: flex;
     gap: 10px;
     background-color: black;
 }
-
-.bill-proceedbuy{
+.bill-checkout{
     position: sticky;
     top: 0;
+    right: 0;
     display: flex;
     flex-direction: column;
     gap: 5px;
     height: fit-content;
+    overflow-y: hidden;
     width: 30%;
+    overflow-x: hidden;
 }
 /* bill */
 .bill{

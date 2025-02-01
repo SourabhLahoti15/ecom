@@ -9,10 +9,13 @@ body {
     margin: 0;
     padding: 0;
     background-color: black;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: fit-content;
 }
 
 main {
-    margin: 10px 10px 10px 23%;
+    margin: 10vh 10px 10px 23%;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -20,7 +23,7 @@ main {
     color: white;
     background-color: #242424;
     overflow: auto;
-    height: calc(100vh - 100px);
+    height: fit-content;
 }
 
 .products {

@@ -10,7 +10,9 @@ body {
     margin: 0;
     padding: 0;
     background-color: black;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: fit-content;
 }
 .products-bill {
     display: flex;

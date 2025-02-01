@@ -146,7 +146,11 @@
                         });
                         function confirmDelete() {
                             if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
-                                window.location.href = '/gu/deleteUser';
+                                // window.location.href = '/gu/deleteUser';
+                                const url = "/gu/deleteUser";
+                                fetch(url,{
+                                    method: 'POST'
+                                })
                             }
                         }
                     </script>

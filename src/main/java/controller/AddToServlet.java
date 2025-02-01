@@ -16,7 +16,7 @@ import dao.WishlistDAOImpl;
 @WebServlet({"/addToCart", "/addToWishlist", "/saveForLater", "/moveToCart"})
 public class AddToServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");
         
         HttpSession session = request.getSession(false);
@@ -98,9 +98,6 @@ public class AddToServlet extends HttpServlet {
             default:
                 break;
         }
-    }
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
     }
 }
 

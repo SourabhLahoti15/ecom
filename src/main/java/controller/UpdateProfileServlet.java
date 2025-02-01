@@ -23,13 +23,14 @@ public class UpdateProfileServlet extends HttpServlet {
             response.getWriter().write("{\"success\": false, \"message\": \"You are not logged in. Please login to add product.\", \"type\": \"error\"}");
             return;
         }
-
+        UserDAOImpl userDAO = new UserDAOImpl();
         int userId = (int) session.getAttribute("user_id");
         String name = request.getParameter("name");
         String gender = request.getParameter("gender");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String phoneStr = request.getParameter("phone");
+        String role = userDAO.getRolebyUserId(userId);
         String dob = request.getParameter("dob");
         // Date dob = null;
         // try {
@@ -53,8 +54,7 @@ public class UpdateProfileServlet extends HttpServlet {
             response.getWriter().write("{\"success\": false, \"message\": \"Invalid phone number format\", \"type\": \"error\"}");
             return;
         }
-        User user = new User(userId, name, gender, email, password, phone, dob);
-        UserDAOImpl userDAO = new UserDAOImpl();
+        User user = new User(userId, name, gender, email, password, phone, role, dob);
         try {
             boolean isUpdated = userDAO.updateUser(user);
             if (isUpdated) {

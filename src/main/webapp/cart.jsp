@@ -65,7 +65,7 @@
                                         </div>
                                     </c:forEach>
                                 </div>
-                                <div class="bill-proceedbuy">
+                                <div class="bill-checkout">
                                     <div class="bill">
                                         <div class="price-details">
                                             <h4>PRICE DETAILS</h4>
@@ -94,8 +94,7 @@
                                             <span>Total Amount</span>
                                         </div>
                                     </div>
-                                    <button class="proceedbuy" onclick="event.stopPropagation(); buynowCart()">Proceed
-                                        to buy</button>
+                                    <button class="checkout" onclick="event.stopPropagation(); buynowCart()">Checkout</button>
                                 </div>
                             </div>
                             <!-- <hr> -->

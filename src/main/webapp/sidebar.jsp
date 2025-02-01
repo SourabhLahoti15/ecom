@@ -23,6 +23,11 @@
                             <span>Home</span>
                         </div>
                         <hr>
+                        <div class="users" onclick="window.location.href='/gu/getUsers'">
+                            <i class="fa-solid fa-users"></i>
+                            <span>Users</span>
+                        </div>
+                        <hr>
                         <div class="my-profile" onclick="window.location.href='/gu/getUserDetails'">
                             <i class='bx bx-user'></i>
                             <span>My Profile</span>
@@ -30,7 +35,8 @@
                         <hr>
                         <div class="notification" onclick="window.location.href='/gu/notification'">
                             <i class="fa-regular fa-bell"></i>
-                            <span>Notifications</span>
+                            <span class="sidebar-notification-count">Notification <%= session.getAttribute("notification_count") !=null ? "("
+                                +session.getAttribute("notification_count")+")" : "" %></span>
                         </div>
                         <hr>
                         <div class="sidebar-cart" onclick="window.location.href='/gu/cart'">

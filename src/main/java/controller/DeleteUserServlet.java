@@ -13,7 +13,8 @@ import dao.UserDAOImpl;
 
 @WebServlet("/deleteUser")
 public class DeleteUserServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("application/json");
         
         HttpSession session = request.getSession(false);

@@ -15,12 +15,14 @@ import javax.servlet.http.HttpSession;
 
 import dao.AddressDAOImpl;
 import dao.CartDAOImpl;
+import dao.NotificationDAOImpl;
 import dao.OrderDAOImpl;
 import dao.ProductDAOImpl;
 import dao.SavelaterDAOImpl;
 import dao.WishlistDAOImpl;
 import model.Address;
 import model.Cart;
+import model.Notification;
 import model.Order;
 import model.Product;
 import model.Savelater;
@@ -35,29 +37,34 @@ public class PageServlet extends HttpServlet {
         HttpSession session = request.getSession(false);
         int uid;
         RequestDispatcher rd;
-        CartDAOImpl cartDAO;
-        SavelaterDAOImpl savelaterDAO;
-        WishlistDAOImpl wishlistDAO;
-        ProductDAOImpl productDAO;
-        OrderDAOImpl orderDAO;
-        AddressDAOImpl addressDAO;
         String path = request.getServletPath();
         switch (path) {
-            case "/home":
-                productDAO = new ProductDAOImpl();
+            case "/home":{
+                ProductDAOImpl productDAO = new ProductDAOImpl();
                 List<Product> allProducts = productDAO.getAllProducts();
                 request.setAttribute("allProducts", allProducts);
                 rd = request.getRequestDispatcher("home.jsp");
                 rd.forward(request, response);
                 break;
-            case "/profile":
+            }
+            case "/profile":{
                 request.getRequestDispatcher("profile.jsp").forward(request, response);
-                // request.getRequestDispatcher("profile.jsp").forward(request, response);
                 break;
-            case "/notification":
+            }
+            case "/notification":{
+                session = request.getSession(false);
+                if (session == null || session.getAttribute("user_id") == null) {
+                    request.getRequestDispatcher("nologinnotification.jsp").forward(request, response);
+                    return;
+                }
+                uid = (int) session.getAttribute("user_id");
+                NotificationDAOImpl notificationDAO = new NotificationDAOImpl();
+                List<Notification> notifications = notificationDAO.getNotificationsByUserId(uid);
+                request.setAttribute("notifications", notifications);
                 request.getRequestDispatcher("notification.jsp").forward(request, response);
                 break;
-            case "/cart":
+            }
+            case "/cart":{
                 session = request.getSession(false);
                 if (session == null || session.getAttribute("user_id") == null) {
                     request.getRequestDispatcher("nologincart.jsp").forward(request, response);
@@ -66,8 +73,8 @@ public class PageServlet extends HttpServlet {
                     return;
                 }
                 uid = (int) session.getAttribute("user_id");
-                cartDAO = new CartDAOImpl();
-                productDAO = new ProductDAOImpl();
+                CartDAOImpl cartDAO = new CartDAOImpl();
+                ProductDAOImpl productDAO = new ProductDAOImpl();
                 float cartCheckedTotalPrice = cartDAO.checkedCartTotalPrice(uid);
                 List<Cart> cartItems = cartDAO.getCartItemsByUserId(uid);
                 List<Cart> cartCheckedItems = cartDAO.getCheckedCartItemsByUserId(uid);
@@ -81,7 +88,7 @@ public class PageServlet extends HttpServlet {
                 request.setAttribute("cartProductMap", cartProductMap);
                 request.setAttribute("cartCheckedTotalPrice", cartCheckedTotalPrice);
 
-                savelaterDAO = new SavelaterDAOImpl();
+                SavelaterDAOImpl savelaterDAO = new SavelaterDAOImpl();
                 List<Savelater> savelaterItems = savelaterDAO.getSavelaterItemsByUserId(uid);
                 Map<Integer, Product> savelaterProductMap = new HashMap<>();
                 int savelaterCount = savelaterItems.size();
@@ -95,7 +102,8 @@ public class PageServlet extends HttpServlet {
 
                 request.getRequestDispatcher("cart.jsp").forward(request, response);
                 break;
-            case "/wishlist":
+            }
+            case "/wishlist":{
                 session = request.getSession(false);
                 if (session == null || session.getAttribute("user_id") == null) {
                     request.getRequestDispatcher("nologinwishlist.jsp").forward(request, response);
@@ -104,8 +112,8 @@ public class PageServlet extends HttpServlet {
                     return;
                 }
                 uid = (int) session.getAttribute("user_id");
-                wishlistDAO = new WishlistDAOImpl();
-                productDAO = new ProductDAOImpl();
+                WishlistDAOImpl wishlistDAO = new WishlistDAOImpl();
+                ProductDAOImpl productDAO = new ProductDAOImpl();
                 List<Wishlist> wishlistItems = wishlistDAO.getWishlistItemsByUserId(uid);
                 Map<Integer, Product> wishlistProductMap = new HashMap<>();
                 for (Wishlist wishlistItem : wishlistItems) {
@@ -116,7 +124,8 @@ public class PageServlet extends HttpServlet {
                 request.setAttribute("productMap", wishlistProductMap);
                 request.getRequestDispatcher("wishlist.jsp").forward(request, response);
                 break;
-            case "/orders":
+            }
+            case "/orders":{
                 session = request.getSession(false);
                 if (session == null || session.getAttribute("user_id") == null) {
                     request.getRequestDispatcher("nologinorders.jsp").forward(request, response);
@@ -124,8 +133,8 @@ public class PageServlet extends HttpServlet {
                     return;
                 }
                 uid = (int) session.getAttribute("user_id");
-                orderDAO = new OrderDAOImpl();
-                productDAO = new ProductDAOImpl();
+                OrderDAOImpl orderDAO = new OrderDAOImpl();
+                ProductDAOImpl productDAO = new ProductDAOImpl();
                 List<Order> orders = orderDAO.getOrderByUserId(uid);
                 Map<Integer, Product> orderProductMap = new HashMap<>();
                 for (Order order : orders) {
@@ -137,31 +146,35 @@ public class PageServlet extends HttpServlet {
                 rd = request.getRequestDispatcher("orders.jsp");
                 rd.forward(request, response);
                 break;
-            case "/become-seller":
+            }
+            case "/become-seller":{
                 // System.out.println("Session: " + session); // Debug
                 // System.out.println("User ID: " + session.getAttribute("user_id")); // Debug
                 if (session != null && session.getAttribute("user_id") != null) {
                     uid = (int) session.getAttribute("user_id");
-                    productDAO = new ProductDAOImpl();
+                    ProductDAOImpl productDAO = new ProductDAOImpl();
                     List<Product> productsByUid = productDAO.getProductByUserId(uid);
                     // System.out.println("Products found: " + productsByUid.size()); // Debug
                     request.setAttribute("productsByUid", productsByUid);
                 }
                 request.getRequestDispatcher("seller.jsp").forward(request, response);
                 break;
-            case "/product":
-                productDAO = new ProductDAOImpl();
+            }
+            case "/product":{
+                ProductDAOImpl productDAO = new ProductDAOImpl();
                 int productId = Integer.parseInt(request.getParameter("productId"));
                 Product product = productDAO.getProductById(productId);
                 request.setAttribute("product", product);
                 request.getRequestDispatcher("product.jsp").forward(request, response);
                 break;
-            case "/sidebar":
-                addressDAO = new AddressDAOImpl();
+            }
+            case "/sidebar":{
+                AddressDAOImpl addressDAO = new AddressDAOImpl();
                 List<Address> addresses = addressDAO.getAddressesByUserId((Integer) session.getAttribute("user_id"));
                 session.setAttribute("addresses", addresses);
-                request.getRequestDispatcher("/sidebar.jsp").forward(request, response);
+                request.getRequestDispatcher("sidebar.jsp").forward(request, response);
                 break;
+            }
             default:
                 request.getRequestDispatcher("home.jsp").forward(request, response);
         }

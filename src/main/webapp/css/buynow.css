@@ -10,11 +10,13 @@ body {
     margin: 0;
     padding: 0;
     background-color: black;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: fit-content;
 }
 
 main {
-    margin: 10px 10px 10px 23%;
+    margin: 10vh 10px 10px 23%;
     padding: 0px;
     display: flex;
     flex-direction: row;
@@ -22,9 +24,8 @@ main {
     /* background: #242424; */
     background-color: black;
     color: #e0e0e0;
-    /* overflow: auto; */
-    /* scrollbar-width: none; */
-    height: calc(100vh - 100px);
+    min-height: calc(100vh - 10vh);
+    max-height: fit-content;
 }
 .buynow-form{
     /* background-color: #242424; */
@@ -37,13 +38,14 @@ main {
     /* height: 100vh; */
 }
 .product {
+    margin: auto 0px;
     padding: 1rem;
     border-radius: 5px;
     background: #2a2a2a;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     width: 45%;
     overflow: hidden;
-    /* height: 100vh; */
+    height: 100%;
 }
 .product-img {
     width: 100%;

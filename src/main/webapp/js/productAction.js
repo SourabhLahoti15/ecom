@@ -1,6 +1,9 @@
 function addToCart(productId) {
     const url = "/gu/addToCart?productId=" + productId;
-    fetch(url)
+    fetch(url,{
+        method: 'POST',
+    }
+    )
         .then(response => response.json())
         .then(data => {
             showNotification(data.success, data.message, data.type);
@@ -14,7 +17,9 @@ function addToCart(productId) {
 }
 function removeFromCart(productId) {
     const url = "/gu/removeFromCart?productId=" + productId;
-    fetch(url)
+    fetch(url,{
+        method: 'POST',
+    })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
@@ -35,7 +40,9 @@ function removeFromCart(productId) {
 }
 function addToWishlist(productId) {
     const url = "/gu/addToWishlist?productId=" + productId;
-    fetch(url)
+    fetch(url,{
+        method: 'POST',
+    })
         .then(response => response.json())
         .then(data => {
             showNotification(data.success, data.message, data.type);
@@ -49,7 +56,9 @@ function addToWishlist(productId) {
 }
 function removeFromWishlist(productId) {
     const url = "/gu/removeFromWishlist?productId=" + productId;
-    fetch(url)
+    fetch(url,{
+        method: 'POST',
+    })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
@@ -70,7 +79,9 @@ function removeFromWishlist(productId) {
 }
 function saveForLater(productId){
     const url = "/gu/saveForLater?productId=" + productId;
-    fetch(url)
+    fetch(url,{
+        method: 'POST',
+    })
     .then(response => response.json())
     .then(data => {
         if(data.success){
@@ -92,7 +103,9 @@ function saveForLater(productId){
 }
 function removeFromSavelater(productId){
     const url = "/gu/removeFromSavelater?productId=" + productId;
-    fetch(url)
+    fetch(url,{
+        method: 'POST',
+    })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
@@ -114,7 +127,9 @@ function moveToCart(productId){
     // removeFromSavelater(productId);
     // addToCart(productId);
     const url = "/gu/moveToCart?productId=" + productId;
-    fetch(url)
+    fetch(url,{
+        method: 'POST',
+    })
     .then(response => response.json())
     .then(data => {
         if(data.success){
@@ -135,7 +150,9 @@ function moveToCart(productId){
 }
 function deleteProduct(productId) {
     const url = "/gu/deleteProduct?productId=" + productId;
-    fetch(url)
+    fetch(url,{
+        method: 'POST'
+    })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
@@ -196,8 +213,8 @@ function placeOrder(productId) {
             }
         })
         .catch(error => {
-            showNotification(false, 'Error occured while placing order.', 'error');
             console.error(error);
+            showNotification(false, 'Error occured while placing order.', 'error');
         });
 }
 function placeOrders(){
@@ -240,13 +257,15 @@ function placeOrders(){
         }
     })
     .catch(error => {
+        console.error(error);
         showNotification(false, 'Error occured while placing order.', 'error');
-        // console.error(error);
     });
 }
 function removeFromOrders(orderId) {
     const url = "/gu/removeFromOrders?orderId=" + orderId;
-    fetch(url)
+    fetch(url,{
+        method: 'POST',
+    })
         .then(response => response.json())
         .then(data => {
             if (data.success) {

@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +18,12 @@ public class OrderDAOImpl implements OrderDAO {
     private static final String PASSWORD = "root";
 
     @Override
-    public boolean placeOrder(Order order) {
+    public int placeOrder(Order order) {
         String query = "INSERT INTO orders (user_id, product_id, address_id, order_amount, order_status, quantity) VALUES (?, ?, ?, ?, ?, ?)";
-        
+        int orderId = -1;
+
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement ps = connection.prepareStatement(query)) {
+             PreparedStatement ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
             // ps.setInt(1, order.getOrder_id());
             ps.setInt(1, order.getUserId());
@@ -33,11 +35,16 @@ public class OrderDAOImpl implements OrderDAO {
             // ps.setTimestamp(5, order.getOrdered_at());
 
             int rowsAffected = ps.executeUpdate();
-            return rowsAffected > 0;
+            if (rowsAffected > 0) {
+            ResultSet generatedKeys = ps.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                orderId = generatedKeys.getInt(1);
+            }
+        }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+        return orderId;
     }
     @Override
     public boolean updateOrder(Order order) {

@@ -5,27 +5,25 @@
     font-family: sans-serif;
     user-select: none;
 }
-
 body {
     margin: 0;
     padding: 0;
     background-color: black;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: fit-content;
 }
-
 main {
-    margin: 10px 10px 10px 23%;
-    padding: 20px;
+    margin: 10vh 10px 10px 23%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     gap: 30px;
     color: white;
     background-color: #242424;
-    overflow: auto;
-    height: calc(100vh - 100px);
+    overflow-y: auto;
+    height: fit-content;
 }
-
 .heading {
     display: flex;
     justify-content: space-between;
@@ -45,5 +43,6 @@ main {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    height: fit-content;
+    overflow-y: visible;
 }
-

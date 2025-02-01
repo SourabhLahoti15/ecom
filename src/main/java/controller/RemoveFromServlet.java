@@ -18,7 +18,7 @@ import dao.WishlistDAOImpl;
 public class RemoveFromServlet extends HttpServlet {
     
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");
         
         HttpSession session = request.getSession();
@@ -65,7 +65,7 @@ public class RemoveFromServlet extends HttpServlet {
                     session.setAttribute("order_count", orderCount);
                     response.getWriter().write("{\"success\": true, \"message\": \"Order cancelled successfully!\", \"type\": \"success\", \"order_count\": " + orderCount + "}");
                 } else {
-                    response.getWriter().write("{\"success\": false, \"message\": \"Failed to remove product from wishlist.\", \"type\": \"error\"}");
+                    response.getWriter().write("{\"success\": false, \"message\": \"Failed to cancel order.\", \"type\": \"error\"}");
                 }
                 break;
             }
@@ -83,10 +83,5 @@ public class RemoveFromServlet extends HttpServlet {
             default:
                 break;
         }
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
     }
 }
