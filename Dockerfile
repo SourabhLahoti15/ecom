@@ -8,23 +8,20 @@ WORKDIR /app
 COPY pom.xml /app/
 COPY src /app/src
 
-# Install dependencies and package the application (create the JAR)
+# Install dependencies and package the application (create the .war file)
 RUN mvn clean package -DskipTests
 
-# Debug: List the contents of the target directory to ensure JAR file is created
-RUN ls -l /app/target/
-
 # Step 2: Final Stage (Runtime)
-FROM openjdk:17-jdk-slim
+FROM tomcat:9-jdk17-slim
 
 # Set the working directory inside the container
-WORKDIR /app
+WORKDIR /usr/local/tomcat/webapps
 
-# Copy the JAR file from the build stage (adjust the JAR file name if necessary)
-COPY --from=builder /app/target/ecom-1.0-SNAPSHOT.jar /app/ecom.jar
+# Copy the WAR file from the build stage
+COPY --from=builder /app/target/gu.war /usr/local/tomcat/webapps/gu.war
 
-# Expose the port your app is running on (e.g., 8080 for most Spring Boot apps)
+# Expose the Tomcat port (8080)
 EXPOSE 8080
 
-# Run the application
-ENTRYPOINT ["java", "-jar", "/app/ecom.jar"]
+# Run Tomcat server
+CMD ["catalina.sh", "run"]
