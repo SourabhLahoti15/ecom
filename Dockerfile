@@ -1,5 +1,5 @@
 # Step 1: Build Stage
-FROM maven:3.8.6-openjdk-11-slim AS builder
+FROM maven:3.8.6-openjdk-slim AS builder
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -12,7 +12,7 @@ COPY src /app/src
 RUN mvn clean package -DskipTests
 
 # Step 2: Final Stage (Runtime)
-FROM openjdk:11-jre-slim
+FROM openjdk:slim
 
 # Set the working directory inside the container
 WORKDIR /usr/local/tomcat/webapps
